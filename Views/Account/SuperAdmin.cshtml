@@ -1,0 +1,69 @@
+﻿@model Quiz_App.Models.SuperAdmin_Login
+
+@{
+    ViewData["Title"] = "This is admin Page passing View Data";
+}
+@*<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form class="form-horizontal" asp-action="SuperAdmin">
+                <div class="form-group">
+                    <label class="control-label">Password</label>
+                    <input asp-for="supAdminPassword" class="form-control" type="password" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="submit"/>
+                 </div>
+            </form>
+        </div>
+    </div>
+    </div>*@
+
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="~/images/avatar.png" id="icon" alt="User Icon" style="width:45%;" />
+        </div>
+
+
+        <!-- Login Form -->
+        <form asp-action="SuperAdminCheck">
+            @*<input type="text" id="login" class="fadeIn second" name="login" placeholder="login">*@
+            <input asp-for="supAdminPassword" type="password" class="fadeIn second" placeholder="password">
+            <input type="submit" class="fadeIn fourth" value="Log In" />
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            @*<a class="underlineHover" href="#">Forgot Password?</a>*@
+            <p style="background-color:black;color:white;font-family:Arial;">Welcome Super Admin</p>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+                    alert('@TempData["msg"]')
+
+        </script>
+    }
+}

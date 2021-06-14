@@ -1,0 +1,29 @@
+﻿@*@model IEnumerable<Quiz_App.Models.normalAdmin>*@
+@model Quiz_App.Models.normalAdmin
+
+
+@{
+    ViewData["Title"] = "This is Normal Admin Page...";
+}
+<form asp-action="createNormalAdmin" class="form-group">
+    <div class="form-group">
+        <label class="control-label">Name</label>
+        <input asp-for="adminUserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Password</label>
+        <input asp-for="adminUserPassword" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Date Created</label>
+        <input asp-for="adminDateCreate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Date Modified</label>
+        <input asp-for="adminDateModified" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
