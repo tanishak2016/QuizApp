@@ -74,23 +74,23 @@ namespace Quiz_App.Models
             }
         }
 
-        public String normalAdminSaveUpdate(normalAdmin na,out String msg)
+        public void normalAdminSaveUpdate(normalAdmin na)
         {
-            msg = string.Empty;
-            try
+         String   msg = string.Empty;
+           try
             {
-                SqlCommand cmd = new SqlCommand("sp_createAdminLogin", con);
+                SqlCommand cmd = new SqlCommand("sp_saveNormalAdmin", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@adminName", na.adminName);
+                cmd.Parameters.AddWithValue("@adminMobile", na.adminMobile);
                 cmd.Parameters.AddWithValue("@adminUserName", na.adminUserName);
                 cmd.Parameters.AddWithValue("@adminPassword", na.adminUserPassword);
                 cmd.Parameters.AddWithValue("@adminDateCreated", na.adminDateCreate);
                 cmd.Parameters.AddWithValue("@adminDateModified", na.adminDateModified);
-                cmd.Parameters.AddWithValue("@flag", na.flag);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-                msg = "OK";
-                return msg;
+
             }
             catch (Exception ex)
             {
@@ -99,7 +99,7 @@ namespace Quiz_App.Models
                     con.Close();
                 }
                 msg = ex.Message;
-                return msg;
+                //return msg;
             }
         }
 

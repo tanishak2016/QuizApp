@@ -45,5 +45,5 @@ G:\Quiz App\Quiz App\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
 G:\Quiz App\Quiz App\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 G:\Quiz App\Quiz App\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 G:\Quiz App\Quiz App\obj\Debug\net5.0\Razor\Views\Account\SuperAdmin.cshtml.g.cs
-G:\Quiz App\Quiz App\obj\Debug\net5.0\Razor\Views\Account\createNormalAdmin.cshtml.g.cs
 G:\Quiz App\Quiz App\obj\Debug\net5.0\Razor\Views\Account\getNormalAdmin.cshtml.g.cs
+G:\Quiz App\Quiz App\obj\Debug\net5.0\Razor\Views\Account\normalAdminSaveUpdate.cshtml.g.cs

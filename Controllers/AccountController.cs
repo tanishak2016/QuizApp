@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Quiz_App.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Quiz_App.Controllers
 {
@@ -30,7 +31,7 @@ namespace Quiz_App.Controllers
             if (res == 1)
             {
                 // TempData["msg"] = "You are Welcome to admin section";
-                return RedirectToAction("createNormalAdmin", "Account");
+                return RedirectToAction("normalAdminSaveUpdate", "Account");
             }
             else
             {
@@ -55,8 +56,8 @@ namespace Quiz_App.Controllers
                     adminID = Convert.ToInt32(dr["AdminID"]),
                     adminUserName = dr["AdminUserName"].ToString(),
                     adminUserPassword = dr["AdminUserPassword"].ToString(),
-                    adminDateCreate = dr["DateCreated"].ToString(),
-                    adminDateModified = dr["DateModified"].ToString()
+                    //adminDateCreate = dr["DateCreated"].ToString(),
+                    //adminDateModified = dr["DateModified"].ToString()
                 });
 
             }
@@ -64,28 +65,23 @@ namespace Quiz_App.Controllers
             return View(list);
         }
         [HttpGet]
-        public IActionResult createNormalAdmin()
+        public IActionResult normalAdminSaveUpdate()
         {
-
-
             return View();
         }
         [HttpPost]
-        public IActionResult createNormalAdmin([Bind] normalAdmin na)
+        public IActionResult normalAdminSaveUpdate(IFormCollection fc)
         {
-
-            try
-            {
-                na.flag = "insert";
-                dbobj.normalAdminSaveUpdate(na, out msg);
-                TempData["msg"] = msg;
-            }
-            catch (Exception ex)
-            {
-                TempData["msg"] = ex.Message;
-            }
-            //return View();
-            return RedirectToAction("createNormalAdmin", "Home");
+            
+            normalAdmin na = new normalAdmin();
+            na.adminName = fc["name"];
+            na.adminMobile = fc["phone"];
+            na.adminUserName = fc["email"];
+            na.adminUserPassword = fc["password"];
+            na.adminDateCreate = DateTime.Now;
+            dbobj.normalAdminSaveUpdate(na);
+            TempData["msg"] = "Record Inserted Successfuly";
+            return View();
 
         }
 
