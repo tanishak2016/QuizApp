@@ -3,109 +3,104 @@
 
 
 @{
-    ViewData["Title"] = "This is Normal Admin Page...";
+    ViewData["Title"] = "Create Admin";
 }
 
 
-
-
-
-@*<div class="container">
-        <div class="row">
-                <form asp-action="createNormalAdmin" class="form-group">
-                    <div class="form-group">
-                        <label class="control-label">Name</label>
-                        <input asp-for="adminUserName" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Password</label>
-                        <input asp-for="adminUserPassword" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Date Created</label>
-                        <input asp-for="adminDateCreate" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Date Modified</label>
-                        <input asp-for="adminDateModified" class="form-control" />
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" value="Submit" class="btn btn-primary" />
-                    </div>
-                    </form>
-
-
-        </div>
-    </div>*@
-
 <div class="container">
-    <div class="col-md-6 mx-auto text-center">
-        <div class="header-title">
-            <h1 class="wv-heading--title">
-                Create or Update New Admin Here
-            </h1>
 
+    <div class="col-md-10 mx-auto text-center ">
+        <div class="header-title">
+            <form asp-action="NormalAdminData">
+
+                <input type="submit" value="View Admin" formaction="NormalAdminData" class="btn btn-bd-primary" />
+                <input type="submit" value="Logout" formaction="SuperAdminLogout" class="btn btn-default">
+            </form>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6 mx-auto" style="text-align:center;background-color:antiquewhite;border-style:dashed;border-color:red">
+        <div class="col-sm-6 mx-auto" style="text-align: center; border-style: dashed; border-color: red; background-image: url('/assets/images/carousel/img3.jpg')">
             <div class="myform form ">
-                <form action="" method="post" >
+                <form asp-action="normalAdminSaveUpdate" id="form1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control my-input"  placeholder="Admin Name" style="width:50%;height:20%;background-color:white">
+                        @*<label asp-for="adminName" class="control-label"></label>*@
+                        <input asp-for="adminName" class="form-control" id="txtadminName" name="adminName" required placeholder="Admin Name" style="width:50%;height:20%;background-color:white" />
+                        <span asp-validation-for="adminName" class="text-danger" style="display:none"></span>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="phone" class="form-control my-input"  placeholder="Phone Number" style="width: 50%; height: 20%; background-color: white">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="email" class="form-control my-input"  placeholder="Assign User Name" style="width: 50%; height: 20%; background-color: white">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" min="0" name="password"  class="form-control my-input" placeholder="Admin Password" style="width: 50%; height: 20%; background-color: white">
-                    </div>
-                    <div class="text-center" style="margin-left:32%">
-                        <button type="submit" class=" btn btn-block send-button tx-tfm">Submit</button>
-                    </div>
-                    @*<div class="col-md-12 ">
-                            <div class="login-or">
-                                <hr class="hr-or">
-                                <span class="span-or">or</span>
-                            </div>
-                        </div>*@
 
+                    <div class="form-group">
+                        @*<label asp-for="adminMobile" class="control-label"></label>*@
+                        <input asp-for="adminMobile" class="form-control" id="txtadminMobile" required placeholder="Mobile No" style="width:50%;height:20%;background-color:white" />
+                        <span asp-validation-for="adminMobile" class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        @*<label asp-for="adminUserName" class="control-label"></label>*@
+                        <input asp-for="adminUserName" class="form-control" id="txtadminUserName" required placeholder="User Name" style="width:50%;height:20%;background-color:white" />
+                        <span asp-validation-for="adminUserName" class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        @*<label asp-for="adminUserPassword" class="control-label"></label>*@
+                        <input asp-for="adminUserPassword" class="form-control" id="adminUserPassword" required placeholder="Password" style="width:50%;height:20%;background-color:white" />
+                        <span asp-validation-for="adminUserPassword" class="text-danger" style="display:none"></span>
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Create Admin" id="submit" formaction="normalAdminSaveUpdate" class="btn btn-default" style="background-color:green" />
+                        @*<input type="submit" value="View Admin" formaction="NormalAdminData" class="btn btn-default" />*@
+                    </div>
 
                 </form>
             </div>
         </div>
-
-        <div class="col-sm-6 mx-auto" style="text-align: center; background-color: antiquewhite; border-style: dashed; border-color: red">
-            <h1>Admin List Here</h1>
-            @*<div class="myform form ">
-                <form action="" method="post" name="login">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control my-input" id="name" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control my-input" id="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" min="0" name="phone" id="phone" class="form-control my-input" placeholder="Phone">
-                    </div>
-                    <div class="text-center ">
-                        <button type="submit" class=" btn btn-block send-button tx-tfm">Create Your Free Account</button>
-                    </div>
-                </form>
-            </div>*@
-        </div>  
     </div>
 </div>
 
-@{ 
-    if(TempData!=null)
-            {
-               <script>
-                   alert('@TempData["msg"]');
-               </script>
+
+@*<script type="text/javascript">
+    const { NULL } = require("node-sass");
+
+    $(document).ready(function () {
+        alert();
+        debugger;
+        $("#form1").on("click", "#submit", function () {
+            if ($("#txtadminName").val() == "" || $("#txtadminName").val() == null) {
+                alert("Admin Name is required");
+                return false;
             }
+            else if ($("#txtadminMobile").val() == "" || $("#txtadminMobile").val() == null) {
+                alert("Mobile Number is required");
+                return false;
+            }
+            else if ($("#txtadminUserName").val() == "" || $("#txtadminUserName").val() == null) {
+
+                alert("User Name is required");
+                return false;
+            }
+            else if ($("#adminUserPassword").val() == "" || $("#adminUserPassword").val() == null) {
+
+                alert("Password is required");
+                return false;
+            }
+
+
+        });
+
+    });
+</script>*@
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+                    alert('@TempData["msg"] ');
+        </script>
+    }
+}
+
+

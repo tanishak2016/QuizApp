@@ -1,0 +1,78 @@
+﻿@model Quiz_App.Models.SuperAdmin_Login
+
+@{
+    ViewData["Title"] = "This is admin Page passing View Data";
+}
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent" style="margin-top: -8%; background-image: url('/assets/images/carousel/Login_bg.jpg')">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="~/assets/images/faces-clipart/pic-1.png" id="icon" alt="User Icon" style="height:10%;width:10%;" />
+        </div>
+
+        <!-- Login Form -->
+        <form asp-action="normalAdminLogin" style="margin-top:13%;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                <input asp-for="normalAdminUserName" id="normalAdminUserName" class="fadeIn second form-control" required placeholder="Enter User Name" style="width:50%;height:5px;background-color:white;margin-left:-1%;background-color:lightcyan;border-style:solid;border-color:blue;border-block:groove">
+                <span asp-validation-for="normalAdminUserName" class="text-danger"></span>
+
+            </div><br />
+            <div>
+                <input asp-for="normalAdminPassword" type="password" id="normalAdminPassword" class="fadeIn second form-control" required placeholder="Enter Password" style="width:50%;height:20%;background-color:white;margin-left:24%;background-color:lightcyan;border-style:solid;border-color:blue;border-block:groove">
+                <span asp-validation-for="normalAdminPassword" class="text-danger"></span>
+            </div><br />
+            <div id="container">
+                <input type="submit" id="submit" class="fadeIn fourth" value="Log In" style="margin-left:2%" />
+                <p id="errmessage" name="errmessage" style="color:red;"></p>
+            </div>
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            @*<a class="underlineHover" href="#">Forgot Password?</a>*@
+            <p style="background-color:black;color:white;font-family:Arial;">Welcome Normal Admin</p>
+        </div>
+
+    </div>
+</div>
+
+@*<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#container").on("click", "#submit", function () {
+            debugger;
+
+
+            if ($("#normalAdminUserName").val() == "" ||  $("#normalAdminUserName").val() == null) {
+                alert("User name is required");
+                return false;
+            }
+            else if ($("#normalAdminPassword").val() == "" || $("#normalAdminPassword").val() == null) {
+                    alert("Password is required");
+                    return false;
+                }
+                else {
+
+                }
+
+
+        });
+
+    });
+
+
+    </script>*@
+
+@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+                    alert('@TempData["msg"]')
+
+        </script>
+    }
+}

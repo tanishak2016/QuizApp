@@ -10,8 +10,15 @@ namespace Quiz_App.Models
     {
 
         [Required(ErrorMessage = "Please enter Password")]
-        [Display(Name = "Password")]
-        
+        [Display(Name = "Password")]        
         public string supAdminPassword { get; set; }
+        
+        [Required(ErrorMessage ="Admin user name is required")]
+        //[Display(Name ="User Name")]
+        public string normalAdminUserName { get; set; }
+
+        [Required(ErrorMessage = "Admin password is required")]
+        //[Display(Name = "{Password")]
+        public string normalAdminPassword { get; set; }
     }
 }
