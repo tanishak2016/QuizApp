@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Quiz_App
 {
@@ -26,16 +27,20 @@ namespace Quiz_App
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //    .AddCookie(options =>
-            //    {
-            //        options.LoginPath = "/Account/SuperAdmin";
-            //    });
 
+
+            //services.AddMvcCore(option =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            //    option.Filters.Add(new AuthorizeFilter(policy));
+            //}).AddXmlSerializerFormatters();
+            
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option=>
                 {
                     option.LoginPath = "/Account/normalAdminLogin";
+                    option.Cookie.Name = "normaAdminCookies";
                 });
 
            services.AddMvc();

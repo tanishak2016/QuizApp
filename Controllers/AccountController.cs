@@ -14,6 +14,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Session;
 
 namespace Quiz_App.Controllers
 {
@@ -112,14 +113,19 @@ namespace Quiz_App.Controllers
             }
             if(res==1)
             {
+
+             
+                
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,sa.normalAdminUserName)
                 };
-                var claimsIdentity = new ClaimsIdentity(claims, "normalAdminLogin");
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                var claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(claimsIdentity);
+                var props = new AuthenticationProperties();
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();                
                 return RedirectToAction("Index", "Home");
-                //return Redirect(ReturnUrl == null ? "/Account/normalAdminLogin" : ReturnUrl);
+                
             }
             
             return View();

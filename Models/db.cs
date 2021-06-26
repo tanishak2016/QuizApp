@@ -128,8 +128,7 @@ namespace Quiz_App.Models
         {
          String   msg = string.Empty;
            try
-            {
-               
+            {              
                     SqlCommand cmd = new SqlCommand("sp_saveNormalAdmin", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@adminName", na.adminName);
@@ -139,14 +138,11 @@ namespace Quiz_App.Models
                     cmd.Parameters.AddWithValue("@adminDateCreated", DateTime.Now);
                     //cmd.Parameters.AddWithValue("@adminDateModified", na.adminDateModified);
                     con.Open();
-                //  cmd.ExecuteNonQuery();
-
-                string result = cmd.ExecuteScalar().ToString();                
-                con.Close();
-                return result;
-                // return ("Data Inserted Successfuly");
-
-
+                    //  cmd.ExecuteNonQuery();
+                    string result = cmd.ExecuteScalar().ToString();                
+                    con.Close();
+                    return result;
+                    // return ("Data Inserted Successfuly");
             }
             catch (Exception ex)
             {
@@ -187,6 +183,59 @@ namespace Quiz_App.Models
                
 
             }
+        }
+
+        public String apiUserRegistrationSave(apiUserRegistrationModel userregistration)
+        {
+            string msg = String.Empty;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_apiUserRegistration", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userfullname", userregistration.userFullName);
+                cmd.Parameters.AddWithValue("@usermobile", userregistration.userMobile);
+                cmd.Parameters.AddWithValue("@useremailid", userregistration.userEmailID);
+                cmd.Parameters.AddWithValue("@userusername", userregistration.userUserName);
+                cmd.Parameters.AddWithValue("@userpassword", userregistration.userPassword);
+                cmd.Parameters.AddWithValue("@userdatecreated", DateTime.Now);
+                con.Open();
+                string result = cmd.ExecuteScalar().ToString();
+                con.Close();
+                return result;
+            }
+            catch(Exception ex)
+            {
+                if(con.State==ConnectionState.Open)
+                {
+                    con.Close();
+                }
+              return ( ex.Message.ToString());
+
+            }
+        }
+
+        public DataSet apiUserRegistrationDisplay()
+        {
+            DataSet ds = new DataSet();
+            // msg = string.Empty;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);                                
+                adp.Fill(ds);
+                //  msg = "OK";
+                return ds;
+
+
+            }
+            catch (Exception ex)
+            {
+                //  msg = ex.Message;
+                return ds;
+            }
+
+            
         }
 
 
