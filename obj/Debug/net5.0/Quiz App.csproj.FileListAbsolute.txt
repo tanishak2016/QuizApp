@@ -371,3 +371,7 @@ G:\Quiz App\Quiz App\obj\Debug\net5.0\Quiz App.dll
 G:\Quiz App\Quiz App\obj\Debug\net5.0\ref\Quiz App.dll
 G:\Quiz App\Quiz App\obj\Debug\net5.0\Quiz App.pdb
 G:\Quiz App\Quiz App\obj\Debug\net5.0\Quiz App.genruntimeconfig.cache
+G:\Quiz App\Quiz App\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+G:\Quiz App\Quiz App\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+G:\Quiz App\Quiz App\bin\Debug\net5.0\Newtonsoft.Json.dll
+G:\Quiz App\Quiz App\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

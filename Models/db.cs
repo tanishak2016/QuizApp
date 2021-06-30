@@ -9,17 +9,17 @@ using System.IO;
 using Quiz_App.Models;
 namespace Quiz_App.Models
 {
-    public class db 
+    public class db
     {
-       
+
         SqlConnection con;
         //string connectionstring = "Data Source=DESKTOP-TAU5C2E;Initial Catalog=QuizApp;Integrated Security=True;Pooling=False";
-        
+
         public db()
         {
             var configuration = GetConfiguration();
             con = new SqlConnection(configuration.GetSection("Data").GetSection("ConnectionString").Value);
-            }
+        }
 
         public IConfigurationRoot GetConfiguration()
         {
@@ -30,7 +30,7 @@ namespace Quiz_App.Models
 
         public int LoginCheck(SuperAdmin_Login sa)
         {
-            SqlCommand cmd = new SqlCommand("sp_superLogin",con);
+            SqlCommand cmd = new SqlCommand("sp_superLogin", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SuperAdminPassword", sa.supAdminPassword);
             SqlParameter oblogin = new SqlParameter();
@@ -50,7 +50,7 @@ namespace Quiz_App.Models
         {
             SqlCommand cmd = new SqlCommand("sp_normalAdminLogin", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@adminUserName",sa.normalAdminUserName );
+            cmd.Parameters.AddWithValue("@adminUserName", sa.normalAdminUserName);
             cmd.Parameters.AddWithValue("@adminPassword", sa.normalAdminPassword);
             cmd.Parameters.AddWithValue("@ret", SqlDbType.Int);
             cmd.Parameters["@ret"].Direction = ParameterDirection.ReturnValue;
@@ -78,21 +78,23 @@ namespace Quiz_App.Models
         public DataSet normalAdminDisplay()
         {
             DataSet ds = new DataSet();
-           // msg = string.Empty;
+            // msg = string.Empty;
+            //sp_dispAPIUserRegistration
+            // sp_dispNormalAdmin
             try
             {
                 SqlCommand cmd = new SqlCommand("sp_dispNormalAdmin", con);
-                cmd.CommandType = CommandType.StoredProcedure;                 
+                cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(ds);
-              //  msg = "OK";
+                //  msg = "OK";
                 return ds;
 
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-              //  msg = ex.Message;
+                //  msg = ex.Message;
                 return ds;
             }
         }
@@ -108,7 +110,7 @@ namespace Quiz_App.Models
                 adp.Fill(ds);
                 return ds;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //(ex.Message.ToString());
                 return ds;
@@ -118,7 +120,7 @@ namespace Quiz_App.Models
         {
             SqlCommand cmd = new SqlCommand("sp_deleteNormalAdmin", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@adminID",id);
+            cmd.Parameters.AddWithValue("@adminID", id);
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
@@ -126,27 +128,27 @@ namespace Quiz_App.Models
         }
         public string normalAdminSaveUpdate(normalAdmin na)
         {
-         String   msg = string.Empty;
-           try
-            {              
-                    SqlCommand cmd = new SqlCommand("sp_saveNormalAdmin", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@adminName", na.adminName);
-                    cmd.Parameters.AddWithValue("@adminMobile", na.adminMobile);
-                    cmd.Parameters.AddWithValue("@adminUserName", na.adminUserName);
-                    cmd.Parameters.AddWithValue("@adminPassword", na.adminUserPassword);
-                    cmd.Parameters.AddWithValue("@adminDateCreated", DateTime.Now);
-                    //cmd.Parameters.AddWithValue("@adminDateModified", na.adminDateModified);
-                    con.Open();
-                    //  cmd.ExecuteNonQuery();
-                    string result = cmd.ExecuteScalar().ToString();                
-                    con.Close();
-                    return result;
-                    // return ("Data Inserted Successfuly");
+            String msg = string.Empty;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_saveNormalAdmin", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@adminName", na.adminName);
+                cmd.Parameters.AddWithValue("@adminMobile", na.adminMobile);
+                cmd.Parameters.AddWithValue("@adminUserName", na.adminUserName);
+                cmd.Parameters.AddWithValue("@adminPassword", na.adminUserPassword);
+                cmd.Parameters.AddWithValue("@adminDateCreated", DateTime.Now);
+                //cmd.Parameters.AddWithValue("@adminDateModified", na.adminDateModified);
+                con.Open();
+                //  cmd.ExecuteNonQuery();
+                string result = cmd.ExecuteScalar().ToString();
+                con.Close();
+                return result;
+                // return ("Data Inserted Successfuly");
             }
             catch (Exception ex)
             {
-                if(con.State==ConnectionState.Open)
+                if (con.State == ConnectionState.Open)
                 {
                     con.Close();
                 }
@@ -173,14 +175,14 @@ namespace Quiz_App.Models
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if( con.State==ConnectionState.Open)
+                if (con.State == ConnectionState.Open)
                 {
                     con.Close();
                     ex.Message.ToString();
                 }
-               
+
 
             }
         }
@@ -203,44 +205,90 @@ namespace Quiz_App.Models
                 con.Close();
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if(con.State==ConnectionState.Open)
+                if (con.State == ConnectionState.Open)
                 {
                     con.Close();
                 }
-              return ( ex.Message.ToString());
+                return (ex.Message.ToString());
 
             }
         }
 
-        public DataSet apiUserRegistrationDisplay()
+        public List<apiUserRegistrationModel> apiUserRegistrationDisplay()
         {
-            DataSet ds = new DataSet();
-            // msg = string.Empty;
-            try
-            {
-                SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
+           
+               DataSet ds = new DataSet();      
+               List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();            
+               SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);                                
-                adp.Fill(ds);
-                //  msg = "OK";
-                return ds;
-
-
-            }
-            catch (Exception ex)
+               SqlDataAdapter da = new SqlDataAdapter(cmd);
+               DataTable dt = new DataTable();
+               da.Fill(dt);
+            if (dt.Rows != null && dt.Rows.Count > 0)
             {
-                //  msg = ex.Message;
-                return ds;
-            }
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    apiUserRegistrationModel obj = new apiUserRegistrationModel();
+                    obj.userFullName = dt.Rows[i]["userFullName"].ToString();
+                    obj.userMobile = dt.Rows[i]["userMobile"].ToString();
+                    obj.userEmailID = dt.Rows[i]["userEmailID"].ToString();
+                    obj.userUserName = dt.Rows[i]["userUserName"].ToString();
+                    obj.userPassword = dt.Rows[i]["userPassword"].ToString();
+                    obj.userDateCreated = dt.Rows[i]["userDateCreated"].ToString();
+                    obj.userDateModified = dt.Rows[i]["userDateModified"].ToString();
+                    apiuserregist.Add(obj);
 
-            
+                }
+            }
+            return apiuserregist;
+              
+
+
+
+
+
+            // msg = string.Empty;
+            //try
+            //{
+            //    SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    //SqlDataAdapter da = new SqlDataAdapter();
+            //    //da.SelectCommand = cmd;
+            //    //da.Fill(ds.Tables[0]
+            //    //  msg = "OK
+            //    using (SqlDataAdapter da = new SqlDataAdapter())
+            //    {
+            //        da.SelectCommand = new SqlCommand("sp_dispAPIUserRegistration", con);
+            //        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            //        //DataSet ds = new DataSet();
+            //        da.Fill(ds, "tblAPIUserRegistration");
+
+            //        dt = ds.Tables["tblAPIUserRegistration"];
+
+            //        foreach (DataRow row in dt.Rows)
+            //        {
+            //            //manipulate your data
+            //        }
+            //    }
+            //    return dt;
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    //  msg = ex.Message;
+            //   return dt;
+            //}
+
+
         }
 
 
     }
 
-    
-   
+
+
 }

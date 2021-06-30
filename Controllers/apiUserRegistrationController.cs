@@ -14,22 +14,25 @@ using System.IO;
 
 namespace Quiz_App.Controllers
 {
-    [Route("api/[controller]/[action]")]
     [ApiController]
+    [Route("api/[controller]/[action]")]
+    [Produces("application/json")]    
     public class apiUserRegistrationController : ControllerBase
     {
         db dbobj = new db();
         // GET: api/<apiUserRegistration>
-        [HttpGet]       
-        public void DisplayUserRegistration()
+       
+        [HttpGet] 
+       public void DisplayUserRegistration()
+        
         {
-
+            
             try
             {
                 if (ModelState.IsValid)
+                
                 {
-
-                    dbobj.apiUserRegistrationDisplay();
+                  dbobj.apiUserRegistrationDisplay().ToString();                    
 
                 }
             }
@@ -37,7 +40,7 @@ namespace Quiz_App.Controllers
             {
                 ex.Message.ToString();
             }
-
+            
 
         }
 

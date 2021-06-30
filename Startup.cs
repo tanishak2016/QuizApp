@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using System.Net.Http;
+using System.Net.Http.Headers;
 namespace Quiz_App
 {
     public class Startup
@@ -43,8 +45,20 @@ namespace Quiz_App
                     option.Cookie.Name = "normaAdminCookies";
                 });
 
-           services.AddMvc();
-            services.AddControllersWithViews();
+
+            services.AddMvc();
+            services.AddMvcCore();
+            services.AddControllersWithViews().AddNewtonsoftJson();
+
+
+
+
+
+            services.AddControllers()
+            .AddJsonOptions(options =>
+               options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +85,9 @@ namespace Quiz_App
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy();
+            
+            
+           
 
             app.UseEndpoints(endpoints =>
             {
@@ -78,6 +95,7 @@ namespace Quiz_App
                     name: "default",
                     pattern: "{controller=Account}/{action=SuperAdmin}/{id?}");
             });
+            
         }
     }
 }
