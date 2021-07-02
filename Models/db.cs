@@ -204,7 +204,6 @@ namespace Quiz_App.Models
 
         public List<apiUserRegistrationModel> apiUserRegistrationDisplay()
         {
-            DataSet ds = new DataSet();
             List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();
             SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
             cmd.CommandType = CommandType.StoredProcedure;

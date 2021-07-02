@@ -16,23 +16,21 @@ namespace Quiz_App.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [Produces("application/json")]    
+    [Produces("application/json")]
     public class apiUserRegistrationController : ControllerBase
     {
         db dbobj = new db();
         // GET: api/<apiUserRegistration>
-       
-        [HttpGet] 
-       public void DisplayUserRegistration()
-        
+
+        [HttpGet]
+        public List<apiUserRegistrationModel> DisplayUserRegistration()
         {
-            
+            List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();
             try
             {
                 if (ModelState.IsValid)
-                
                 {
-                  dbobj.apiUserRegistrationDisplay().ToString();                    
+                    apiuserregist = dbobj.apiUserRegistrationDisplay();//.ToString();
 
                 }
             }
@@ -40,8 +38,7 @@ namespace Quiz_App.Controllers
             {
                 ex.Message.ToString();
             }
-            
-
+            return apiuserregist;
         }
 
         // GET api/<apiUserRegistration>/5
@@ -52,34 +49,29 @@ namespace Quiz_App.Controllers
         }
 
         // POST api/<apiUserRegistration>
-        [HttpPost]        
-        public void SaveUserRegistration([FromBody]  apiUserRegistrationModel userregistration)
+        [HttpPost]
+        public void SaveUserRegistration([FromBody] apiUserRegistrationModel userregistration)
         {
-           try
+            try
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     String result = dbobj.apiUserRegistrationSave(userregistration);
-                    if(result=="Success")
+                    if (result == "Success")
                     {
-
-                      String   msg = "insert success";
+                        String msg = "insert success";
                         ModelState.Clear();
-                        
                     }
                     else
                     {
                         String err = "id elready taken";
                     }
-
                 }
-               
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.Message.ToString();
             }
-
         }
 
         // PUT api/<apiUserRegistration>/5
