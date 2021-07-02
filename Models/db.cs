@@ -11,7 +11,6 @@ namespace Quiz_App.Models
 {
     public class db
     {
-
         SqlConnection con;
         //string connectionstring = "Data Source=DESKTOP-TAU5C2E;Initial Catalog=QuizApp;Integrated Security=True;Pooling=False";
 
@@ -23,7 +22,6 @@ namespace Quiz_App.Models
 
         public IConfigurationRoot GetConfiguration()
         {
-
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             return builder.Build();
         }
@@ -43,8 +41,6 @@ namespace Quiz_App.Models
             int res = Convert.ToInt32(oblogin.Value);
             con.Close();
             return res;
-
-
         }
         public Int32 normalAdminLoginCheck(SuperAdmin_Login sa)
         {
@@ -71,10 +67,7 @@ namespace Quiz_App.Models
             //int res = Convert.ToInt32(oblogin.Value);
             //con.Close();
             //return res;
-
         }
-
-
         public DataSet normalAdminDisplay()
         {
             DataSet ds = new DataSet();
@@ -89,8 +82,6 @@ namespace Quiz_App.Models
                 adp.Fill(ds);
                 //  msg = "OK";
                 return ds;
-
-
             }
             catch (Exception ex)
             {
@@ -124,7 +115,6 @@ namespace Quiz_App.Models
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
-
         }
         public string normalAdminSaveUpdate(normalAdmin na)
         {
@@ -161,7 +151,6 @@ namespace Quiz_App.Models
         {
             try
             {
-
                 SqlCommand cmd = new SqlCommand("sp_updateNormalAdmin", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@adminID", na.adminID);
@@ -182,8 +171,6 @@ namespace Quiz_App.Models
                     con.Close();
                     ex.Message.ToString();
                 }
-
-
             }
         }
 
@@ -212,20 +199,18 @@ namespace Quiz_App.Models
                     con.Close();
                 }
                 return (ex.Message.ToString());
-
             }
         }
 
         public List<apiUserRegistrationModel> apiUserRegistrationDisplay()
         {
-           
-               DataSet ds = new DataSet();      
-               List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();            
-               SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-               SqlDataAdapter da = new SqlDataAdapter(cmd);
-               DataTable dt = new DataTable();
-               da.Fill(dt);
+            DataSet ds = new DataSet();
+            List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();
+            SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
             if (dt.Rows != null && dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -239,15 +224,9 @@ namespace Quiz_App.Models
                     obj.userDateCreated = dt.Rows[i]["userDateCreated"].ToString();
                     obj.userDateModified = dt.Rows[i]["userDateModified"].ToString();
                     apiuserregist.Add(obj);
-
                 }
             }
             return apiuserregist;
-              
-
-
-
-
 
             // msg = string.Empty;
             //try
@@ -275,7 +254,6 @@ namespace Quiz_App.Models
             //    }
             //    return dt;
 
-
             //}
             //catch (Exception ex)
             //{
@@ -283,12 +261,113 @@ namespace Quiz_App.Models
             //   return dt;
             //}
 
+        }
 
+        public DataSet getContributor()
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_getContributor", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return ds;
+            }
+        }
+
+        public DataSet getContributorById(int id)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_getContributorById", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@contributorId", id);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return ds;
+            }
+        }
+
+        public string saveContributor(contributor cont)
+        {
+            String msg = string.Empty;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_saveContributor", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@fullName", cont.fullName);
+                cmd.Parameters.AddWithValue("@address", cont.address);
+                cmd.Parameters.AddWithValue("@mobileNo", cont.mobileNo);
+                cmd.Parameters.AddWithValue("@emailId", cont.emailId);
+                cmd.Parameters.AddWithValue("@userName", cont.userName);
+                cmd.Parameters.AddWithValue("@password", cont.password);
+                cmd.Parameters.AddWithValue("@contributor_createdBy", cont.contributor_createdBy);
+                cmd.Parameters.AddWithValue("@adminLocation", cont.adminLocation);
+                cmd.Parameters.AddWithValue("@dateCreated", DateTime.Now);
+                con.Open();
+                string result = cmd.ExecuteScalar().ToString();
+                con.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                return (ex.Message.ToString());
+            }
+        }
+
+        public void updateContributor(contributor cont)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_updateContributor", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@fullName", cont.fullName);
+                cmd.Parameters.AddWithValue("@address", cont.address);
+                cmd.Parameters.AddWithValue("@mobileNo", cont.mobileNo);
+                cmd.Parameters.AddWithValue("@emailId", cont.emailId);
+                cmd.Parameters.AddWithValue("@userName", cont.userName);
+                cmd.Parameters.AddWithValue("@password", cont.password);
+                cmd.Parameters.AddWithValue("@contributor_createdBy", cont.contributor_createdBy);
+                cmd.Parameters.AddWithValue("@adminLocation", cont.adminLocation);
+                cmd.Parameters.AddWithValue("@adminDateModified", DateTime.Now);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    ex.Message.ToString();
+                }
+            }
+        }
+
+        public void deleteContributor(int id)
+        {
+            SqlCommand cmd = new SqlCommand("sp_deleteContributor", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@contributorId", id);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
 
 
     }
-
-
-
 }
