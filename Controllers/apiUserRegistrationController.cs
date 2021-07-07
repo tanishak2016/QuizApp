@@ -50,8 +50,9 @@ namespace Quiz_App.Controllers
 
         // POST api/<apiUserRegistration>
         [HttpPost]
-        public void SaveUserRegistration([FromBody] apiUserRegistrationModel userregistration)
+        public string SaveUserRegistration(apiUserRegistrationModel userregistration)
         {
+            string message = string.Empty;
             try
             {
                 if (ModelState.IsValid)
@@ -59,12 +60,12 @@ namespace Quiz_App.Controllers
                     String result = dbobj.apiUserRegistrationSave(userregistration);
                     if (result == "Success")
                     {
-                        String msg = "insert success";
+                        message = "insert success";
                         ModelState.Clear();
                     }
                     else
                     {
-                        String err = "id elready taken";
+                        message = "id already taken";
                     }
                 }
             }
@@ -72,6 +73,7 @@ namespace Quiz_App.Controllers
             {
                 ex.Message.ToString();
             }
+            return message;
         }
 
         // PUT api/<apiUserRegistration>/5

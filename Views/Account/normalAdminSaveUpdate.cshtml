@@ -15,7 +15,6 @@
 
                 <input type="submit" value="View Admin" formaction="NormalAdminData" class="btn btn-bd-primary" />
                 <input type="submit" value="Logout" formaction="SuperAdminLogout" class="btn btn-default">
-                <input type="submit" value="View Contributor" formaction="/Contributor/ContributorData" class="btn btn-default">
             </form>
         </div>
     </div>
@@ -59,36 +58,36 @@
 
 
 @*<script type="text/javascript">
-    const { NULL } = require("node-sass");
+        const { NULL } = require("node-sass");
 
-    $(document).ready(function () {
-        alert();
-        debugger;
-        $("#form1").on("click", "#submit", function () {
-            if ($("#txtadminName").val() == "" || $("#txtadminName").val() == null) {
-                alert("Admin Name is required");
-                return false;
-            }
-            else if ($("#txtadminMobile").val() == "" || $("#txtadminMobile").val() == null) {
-                alert("Mobile Number is required");
-                return false;
-            }
-            else if ($("#txtadminUserName").val() == "" || $("#txtadminUserName").val() == null) {
+        $(document).ready(function () {
+            alert();
+            debugger;
+            $("#form1").on("click", "#submit", function () {
+                if ($("#txtadminName").val() == "" || $("#txtadminName").val() == null) {
+                    alert("Admin Name is required");
+                    return false;
+                }
+                else if ($("#txtadminMobile").val() == "" || $("#txtadminMobile").val() == null) {
+                    alert("Mobile Number is required");
+                    return false;
+                }
+                else if ($("#txtadminUserName").val() == "" || $("#txtadminUserName").val() == null) {
 
-                alert("User Name is required");
-                return false;
-            }
-            else if ($("#adminUserPassword").val() == "" || $("#adminUserPassword").val() == null) {
+                    alert("User Name is required");
+                    return false;
+                }
+                else if ($("#adminUserPassword").val() == "" || $("#adminUserPassword").val() == null) {
 
-                alert("Password is required");
-                return false;
-            }
+                    alert("Password is required");
+                    return false;
+                }
 
+
+            });
 
         });
-
-    });
-</script>*@
+    </script>*@
 
 
 @section Scripts {
