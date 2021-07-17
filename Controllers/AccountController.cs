@@ -99,23 +99,18 @@ namespace Quiz_App.Controllers
         public  async Task<IActionResult> normalAdminLogin(SuperAdmin_Login sa,string ReturnUrl)
         {       
            
-             int res = dbobj.normalAdminLoginCheck(sa);
+            int res = dbobj.normalAdminLoginCheck(sa);
             if (res == -1)
             {
-
                 TempData["msg"] = "Wrong User Name!";
-                // return RedirectToAction("normalAdminSaveUpdate", "Account");            
-                
+                // return RedirectToAction("normalAdminSaveUpdate", "Account");                            
             }
             if(res==-2)
             {
                 TempData["msg"] = "Wrong Password";
             }
             if(res==1)
-            {
-
-             
-                
+            {   
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,sa.normalAdminUserName)
@@ -124,17 +119,13 @@ namespace Quiz_App.Controllers
                 var principal = new ClaimsPrincipal(claimsIdentity);
                 var props = new AuthenticationProperties();
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();                
-                return RedirectToAction("Index", "Home");
-                
-            }
-            
+                return RedirectToAction("Index", "Home");                
+            }            
             return View();
         }
-
-      
+              
         [HttpGet]
         public IActionResult normalAdminSaveUpdate()
-
         {
             return View();
         }
@@ -160,34 +151,25 @@ namespace Quiz_App.Controllers
                     }
                     else
                     {
-
                         TempData["msg"] = "This User ID already exists. Try with another.";
                         return View();
                     }
-
-
                 }
             }
             catch (Exception ex)
             {
-                TempData["msg"] = ex.Message;
-               
-            }
-            
-             return View(na);
-           // return RedirectToAction("normalAdminDisplay", "Account");
-
+                TempData["msg"] = ex.Message;               
+            }            
+             return View(na);           
         }
 
         [HttpGet]
         public IActionResult normalAdminDisplay()
         {
-
             try
             {
                 if(ModelState.IsValid)
                 {
-
                     DataSet ds = dbobj.normalAdminDisplay();
                     ViewBag.emp = ds.Tables[0];
                 }
@@ -201,14 +183,13 @@ namespace Quiz_App.Controllers
 
         public IActionResult NormalAdminData()
         {
-
             return RedirectToAction("normalAdminDisplay", "Account");
             //return View();
         }
+
         [HttpGet]
         public IActionResult normalAdminUpdate(int id)
         {
-
             try
             {
                 if(ModelState.IsValid)
@@ -233,7 +214,6 @@ namespace Quiz_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
                     dbobj.normalAdminUpdate(na);
                     return RedirectToAction("normalAdminDisplay", "Account");
 
@@ -249,29 +229,23 @@ namespace Quiz_App.Controllers
             return View(na);
         }
         public IActionResult normalAdminDelete(int id)
-        {
-            
+        {            
             try
             {
                 if(ModelState.IsValid)
                 {
                     dbobj.normalAdminDelete(id);
-                    TempData["msg"] = "Deleted Successfuly";
-                    
+                    TempData["msg"] = "Deleted Successfuly";                    
                 }
-
             }
             catch(Exception ex)
             {
                 TempData["msg"] = ex.Message;
-
             }
             return RedirectToAction("normalAdminDisplay", "Account");
-
         }
 
        
-
 
     }
 }

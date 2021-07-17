@@ -22,8 +22,11 @@ namespace Quiz_App.Controllers
         {
             try
             {
-                DataSet ds = dbObj.getContributor();
-                ViewBag.contributor = ds.Tables[0];
+                if (ModelState.IsValid)
+                {
+                    DataSet ds = dbObj.getContributor();
+                    ViewBag.contributor = ds.Tables[0];
+                }
             }
             catch (Exception ex)
             {
@@ -55,7 +58,15 @@ namespace Quiz_App.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult saveContributor()
+        {
+            return View();
+        }
+
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult saveContributor(contributor cont)
         {
             try

@@ -17,7 +17,7 @@ namespace Quiz_App.Models
         public string contributor_createdBy { get; set; }
         public string adminLocation { get; set; }
         public DateTime dateCreated { get; set; }
-        public DateTime dateModifiied { get; set; }
+        public DateTime dateModified { get; set; }
 
     }
 }
