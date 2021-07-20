@@ -4,7 +4,8 @@
 
     <div class="btn-group" style="background-image: url('/images/img1.jpg');height:25%;">
         <form asp-action="saveContributor">
-            <input type="submit" value="Create Contributor" formaction="saveContributor" class="btn btn-bd-primary" />
+            <input type="submit" value="Create Contributor" formaction="saveContributorData" class="btn btn-bd-primary" />
+            <input type="submit" value="Logout" formaction="normalAdminLogout" class="btn btn-default">
         </form>
     </div><br />
 
@@ -26,28 +27,27 @@
             </tr>
         </thead>
         <tbody>
-            @{
-                foreach (System.Data.DataRow dr in ViewBag.contributor.Rows)
-                {
-                    <tr class="active">
-                        <td>@dr["contributorId"]</td>
-                        <td>@dr["fullName"]</td>
-                        <td>@dr["address"]</td>
-                        <td>@dr["mobileNo"]</td>
-                        <td>@dr["emailId"]</td>
-                        <td>@dr["userName"]</td>
-                        <td>@dr["password"]</td>
-                        <td>@dr["contributor_createdBy"]</td>
-                        <td>@dr["adminLocation"]</td>
-                        <td>@dr["dateCreated"]</td>
-                        <td>@dr["dateModified"]</td>
-                        <td>
-                            <a href="/Contributor/updateContributor?id=@dr["contributorId"]" style="color:aqua">Update</a>|
-                            <a href="/Contributor/deleteContributor?id=@dr["contributorId"]" style="color:red">Delete</a>
-                        </td>
-                    </tr>
-                }
+            @foreach (System.Data.DataRow dr in ViewBag.contributor.Rows)
+            {
+            <tr class="active">
+                <td>@dr["contributorId"]</td>
+                <td>@dr["fullName"]</td>
+                <td>@dr["address"]</td>
+                <td>@dr["mobileNo"]</td>
+                <td>@dr["emailId"]</td>
+                <td>@dr["userName"]</td>
+                <td>@dr["password"]</td>
+                <td>@dr["contributor_createdBy"]</td>
+                <td>@dr["adminLocation"]</td>
+                <td>@dr["dateCreated"]</td>
+                <td>@dr["dateModified"]</td>
+                <td>
+                    <a href="/Contributor/updateContributor?id=@dr["contributorId"]" style="color:aqua">Update</a>|
+                    <a href="/Contributor/deleteContributor?id=@dr["contributorId"]" style="color:red">Delete</a>
+                </td>
+            </tr>
             }
+
         </tbody>
     </table>
 </div>

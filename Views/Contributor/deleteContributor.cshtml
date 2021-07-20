@@ -1,0 +1,97 @@
+﻿@model Quiz_App.Models.contributor
+
+@{
+    ViewData["Title"] = "deleteContributor";
+}
+
+<div class="container">
+    <div class="col-md-6 mx-auto text-center">
+        <div class="header-title">
+            <h1 class="wv-heading--title" style="background-color:red;color:white">
+                Delete Contributor
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 mx-auto" style="text-align: center; background-image: url('/assets/images/carousel/img3.jpg'); border-style: dashed; border-color: red">
+            <h5 style="background-color:red;color:white">Are you sure you want to delete this?</h5>
+            <div>
+                <h4 style="color:white">contributor</h4>
+                <hr />
+                <dl class="row" style="color:white">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.contributorId)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.contributorId)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.fullName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.fullName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.address)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.address)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.mobileNo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.mobileNo)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.emailId)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.emailId)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.userName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.userName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.password)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.password)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.contributor_createdBy)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.contributor_createdBy)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.adminLocation)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.adminLocation)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.dateCreated)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.dateCreated)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.dateModified)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.dateModified)
+                    </dd>
+                </dl>
+
+                <form asp-action="deleteContributor">
+                    <input type="submit" value="Delete" class="btn btn-danger" asp-route-id="@Model.contributorId"/> |
+                    <a asp-action="getContributor">Back to List</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

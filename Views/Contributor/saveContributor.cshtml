@@ -9,59 +9,60 @@
     <div class="col-md-10 mx-auto text-center ">
         <div class="header-title">
             <form asp-action="ContributorData">
-                <input type="submit" value="View Contributor" formaction="ContributorData" class="btn btn-bd-primary" />
+                <input type="submit" value="View Contributor" formaction="getContributorData" class="btn btn-bd-primary" />
                 <input type="submit" value="Logout" formaction="SuperAdminLogout" class="btn btn-default">
             </form>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-sm-6 mx-auto" style="text-align: center; border-style: dashed; border-color: red; background-image: url('/assets/images/carousel/img3.jpg')">
+        <div class="col-md-6 mx-auto" style="text-align: center; border-style: dashed; border-color: red; background-image: url('/assets/images/carousel/img3.jpg')">
             <div class="myform form">
                 <form asp-action="saveContributor">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="fullName" class="control-label"></label>
-                        <input asp-for="fullName" class="form-control" />
+                        @*<label asp-for="fullName" class="control-label"></label>*@
+                        <input asp-for="fullName" class="form-control" id="txtfullName" required placeholder="Full Name" style="width:50%;height:20%;background-color:white" />
                         <span asp-validation-for="fullName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="address" class="control-label"></label>
-                        <input asp-for="address" class="form-control" />
+                        @*<label asp-for="address" class="control-label"></label>*@
+                        <input asp-for="address" class="form-control" id="txtaddress" required placeholder="Address" style="width:50%;height:20%;background-color:white" />
                         <span asp-validation-for="address" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="mobileNo" class="control-label"></label>
-                        <input asp-for="mobileNo" class="form-control" />
+                        @*<label asp-for="mobileNo" class="control-label"></label>*@
+                        <input asp-for="mobileNo" class="form-control" id="txtmobileNo" maxlength="10" required placeholder="Mobile No" style="width:50%;height:20%;background-color:white" />
                         <span asp-validation-for="mobileNo" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="emailId" class="control-label"></label>
-                        <input asp-for="emailId" class="form-control" />
+                        @*<label asp-for="emailId" class="control-label"></label>*@
+                        <input asp-for="emailId" class="form-control" id="txtemailId" required placeholder="Email Id" style="width:50%;height:20%;background-color:white" />
                         <span asp-validation-for="emailId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="userName" class="control-label"></label>
-                        <input asp-for="userName" class="form-control" />
+                        @*<label asp-for="userName" class="control-label"></label>*@
+                        <input asp-for="userName" class="form-control" id="txtuserName" required placeholder="User Name" style="width:50%;height:20%;background-color:white"/>
                         <span asp-validation-for="userName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="password" class="control-label"></label>
-                        <input asp-for="password" class="form-control" />
+                        @*<label asp-for="password" class="control-label"></label>*@
+                        <input asp-for="password" class="form-control" id="txtpassword" required placeholder="Password" style="width:50%;height:20%;background-color:white"/>
                         <span asp-validation-for="password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="contributor_createdBy" class="control-label"></label>
-                        <input asp-for="contributor_createdBy" class="form-control" />
+                        @*<label asp-for="contributor_createdBy" class="control-label"></label>*@
+                        <input asp-for="contributor_createdBy" class="form-control" id="txtcontributor_createdBy" required placeholder="Contributor Created By" style="width:50%;height:20%;background-color:white"/>
                         <span asp-validation-for="contributor_createdBy" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="adminLocation" class="control-label"></label>
-                        <input asp-for="adminLocation" class="form-control" />
+                        @*<label asp-for="adminLocation" class="control-label"></label>*@
+                        <input asp-for="adminLocation" class="form-control" id="txtadminLocation" required placeholder="Admin Location" style="width:50%;height:20%;background-color:white"/>
                         <span asp-validation-for="adminLocation" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-primary" />
+                        @*<input type="submit" value="Clear" class="btn btn-primary"/>*@
                     </div>
                 </form>
             </div>

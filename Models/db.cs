@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Quiz_App.Models;
+using System.Globalization;
+
 namespace Quiz_App.Models
 {
     public class db
@@ -226,40 +228,6 @@ namespace Quiz_App.Models
                 }
             }
             return apiuserregist;
-
-            // msg = string.Empty;
-            //try
-            //{
-            //    SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
-            //    cmd.CommandType = CommandType.StoredProcedure;
-            //    //SqlDataAdapter da = new SqlDataAdapter();
-            //    //da.SelectCommand = cmd;
-            //    //da.Fill(ds.Tables[0]
-            //    //  msg = "OK
-            //    using (SqlDataAdapter da = new SqlDataAdapter())
-            //    {
-            //        da.SelectCommand = new SqlCommand("sp_dispAPIUserRegistration", con);
-            //        da.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-            //        //DataSet ds = new DataSet();
-            //        da.Fill(ds, "tblAPIUserRegistration");
-
-            //        dt = ds.Tables["tblAPIUserRegistration"];
-
-            //        foreach (DataRow row in dt.Rows)
-            //        {
-            //            //manipulate your data
-            //        }
-            //    }
-            //    return dt;
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    //  msg = ex.Message;
-            //   return dt;
-            //}
-
         }
 
         public DataSet getContributor()
@@ -279,21 +247,39 @@ namespace Quiz_App.Models
             }
         }
 
-        public DataSet getContributorById(int id)
+        public contributor getContributorById(int? id)
         {
-            DataSet ds = new DataSet();
+            contributor cont = new contributor();
             try
             {
                 SqlCommand cmd = new SqlCommand("sp_getContributorById", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@contributorId", id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        cont.contributorId = Convert.ToInt32(dt.Rows[i]["contributorId"]);
+                        cont.fullName = dt.Rows[i]["fullName"].ToString();
+                        cont.address = dt.Rows[i]["address"].ToString();
+                        cont.mobileNo = dt.Rows[i]["mobileNo"].ToString();
+                        cont.emailId = dt.Rows[i]["emailId"].ToString();
+                        cont.userName = dt.Rows[i]["userName"].ToString();
+                        cont.password = dt.Rows[i]["password"].ToString();
+                        cont.contributor_createdBy = dt.Rows[i]["contributor_createdBy"].ToString();
+                        cont.adminLocation = dt.Rows[i]["adminLocation"].ToString();
+                        cont.dateCreated = Convert.ToDateTime(dt.Rows[i]["dateCreated"]);
+                        cont.dateModified = Convert.ToDateTime(dt.Rows[i]["dateModified"]);
+                    }
+                }
+                return cont;
             }
             catch (Exception ex)
             {
-                return ds;
+                return cont;
             }
         }
 
@@ -312,7 +298,8 @@ namespace Quiz_App.Models
                 cmd.Parameters.AddWithValue("@password", cont.password);
                 cmd.Parameters.AddWithValue("@contributor_createdBy", cont.contributor_createdBy);
                 cmd.Parameters.AddWithValue("@adminLocation", cont.adminLocation);
-                cmd.Parameters.AddWithValue("@dateCreated", DateTime.Now);
+                cont.dateCreated = DateTime.Now;
+                cmd.Parameters.AddWithValue("@dateCreated", cont.dateCreated);
                 con.Open();
                 string result = cmd.ExecuteScalar().ToString();
                 con.Close();
@@ -334,6 +321,7 @@ namespace Quiz_App.Models
             {
                 SqlCommand cmd = new SqlCommand("sp_updateContributor", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@contributorId", cont.contributorId);
                 cmd.Parameters.AddWithValue("@fullName", cont.fullName);
                 cmd.Parameters.AddWithValue("@address", cont.address);
                 cmd.Parameters.AddWithValue("@mobileNo", cont.mobileNo);
@@ -342,7 +330,7 @@ namespace Quiz_App.Models
                 cmd.Parameters.AddWithValue("@password", cont.password);
                 cmd.Parameters.AddWithValue("@contributor_createdBy", cont.contributor_createdBy);
                 cmd.Parameters.AddWithValue("@adminLocation", cont.adminLocation);
-                cmd.Parameters.AddWithValue("@adminDateModified", DateTime.Now);
+                cmd.Parameters.AddWithValue("@dateModified", DateTime.Now);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -357,7 +345,7 @@ namespace Quiz_App.Models
             }
         }
 
-        public void deleteContributor(int id)
+        public void deleteContributor(int? id)
         {
             SqlCommand cmd = new SqlCommand("sp_deleteContributor", con);
             cmd.CommandType = CommandType.StoredProcedure;

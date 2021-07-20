@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Quiz_App.Models;
 using System.Data;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Quiz_App.Controllers
 {
@@ -17,6 +18,7 @@ namespace Quiz_App.Controllers
             return View();
         }
 
+        //display all contributors details
         [HttpGet]
         public IActionResult getContributor()
         {
@@ -35,27 +37,14 @@ namespace Quiz_App.Controllers
             return View();
         }
 
-        public IActionResult ContributorData()
+        public IActionResult getContributorData()
         {
             return RedirectToAction("getContributor", "Contributor");
         }
 
-        [HttpGet]
-        public IActionResult getContributorById(int id)
+        public IActionResult saveContributorData()
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    DataSet ds = dbObj.getContributorById(id);
-                    ViewBag.adminbyid = ds.Tables[0];
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["msg"] = ex.Message;
-            }
-            return View();
+            return RedirectToAction("saveContributor", "Contributor");
         }
 
         [HttpGet]
@@ -64,7 +53,7 @@ namespace Quiz_App.Controllers
             return View();
         }
 
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult saveContributor(contributor cont)
@@ -76,7 +65,7 @@ namespace Quiz_App.Controllers
                     string res = dbObj.saveContributor(cont);
                     if (res == "Success")
                     {
-                        TempData["msg"] = res;
+                        TempData["msg"] = "Contributor Record saved successfully!";
                         ModelState.Clear();
                         cont.fullName = string.Empty;
                         cont.address = string.Empty;
@@ -84,8 +73,14 @@ namespace Quiz_App.Controllers
                         cont.emailId = string.Empty;
                         cont.userName = string.Empty;
                         cont.password = string.Empty;
+                        cont.contributor_createdBy = string.Empty;
                         cont.adminLocation = string.Empty;
                         return View(cont);
+                    }
+                    else if (res.Contains("Error") == true)
+                    {
+                        TempData["msg"] = res;
+                        return View();
                     }
                     else
                     {
@@ -102,6 +97,26 @@ namespace Quiz_App.Controllers
             // return RedirectToAction("normalAdminDisplay", "Account");
         }
 
+        //for Edit mode fetch data by id
+        [HttpGet]
+        public IActionResult updateContributor(int id)
+        {
+            contributor cont = null;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    cont = dbObj.getContributorById(id);
+                    ViewBag.contributorById = cont;
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["msg"] = ex.Message;
+            }
+            return View(cont);
+        }
+
         [HttpPost]
         public IActionResult updateContributor(contributor cont)
         {
@@ -110,7 +125,7 @@ namespace Quiz_App.Controllers
                 if (ModelState.IsValid)
                 {
                     dbObj.updateContributor(cont);
-                    return RedirectToAction("getContributor", "Contributor");
+                    return RedirectToAction("getContributorData", "Contributor");
                 }
             }
             catch (Exception ex)
@@ -120,6 +135,30 @@ namespace Quiz_App.Controllers
             }
             return View(cont);
         }
+
+        [HttpGet]
+        public IActionResult deleteContributor(int? id)
+        {
+            contributor cont = null;
+            try
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                if (ModelState.IsValid)
+                {
+                    cont = dbObj.getContributorById(id);
+                    ViewBag.delContById = cont;
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["msg"] = ex.Message;
+            }
+            return View(cont);
+        }
+
 
         [HttpPost]
         public IActionResult deleteContributor(int id)
@@ -136,7 +175,7 @@ namespace Quiz_App.Controllers
             {
                 TempData["msg"] = ex.Message;
             }
-            return RedirectToAction("normalAdminDisplay", "Account");
+            return RedirectToAction("getContributor", "contributor");
         }
 
     }
