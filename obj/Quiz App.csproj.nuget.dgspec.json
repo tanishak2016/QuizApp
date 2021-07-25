@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Shagufta Documents\\Freelance work\\QuizApp\\Quiz App.csproj": {}
+    "G:\\Quiz App\\Quiz App\\Quiz App.csproj": {}
   },
   "projects": {
-    "C:\\Shagufta Documents\\Freelance work\\QuizApp\\Quiz App.csproj": {
+    "G:\\Quiz App\\Quiz App\\Quiz App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Shagufta Documents\\Freelance work\\QuizApp\\Quiz App.csproj",
+        "projectUniqueName": "G:\\Quiz App\\Quiz App\\Quiz App.csproj",
         "projectName": "Quiz App",
-        "projectPath": "C:\\Shagufta Documents\\Freelance work\\QuizApp\\Quiz App.csproj",
-        "packagesPath": "C:\\Users\\HP PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Shagufta Documents\\Freelance work\\QuizApp\\obj\\",
+        "projectPath": "G:\\Quiz App\\Quiz App\\Quiz App.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "G:\\Quiz App\\Quiz App\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\HP PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -49,11 +50,15 @@
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
-              "version": "[5.0.7, )"
+              "version": "[5.0.8, )"
             },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
-              "version": "[5.0.7, )"
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.Owin.Host.SystemWeb": {
               "target": "Package",
@@ -67,9 +72,17 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "Syncfusion.EJ2.AspNet.Core": {
+              "target": "Package",
+              "version": "[19.2.0.47, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.2, )"
+            },
+            "jQuery-datetimepicker": {
+              "target": "Package",
+              "version": "[2.4.5, )"
             }
           },
           "imports": [
@@ -90,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

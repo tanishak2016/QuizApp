@@ -1,0 +1,119 @@
+﻿@model Quiz_App.Areas.Main.Models.NoticeBoardProperties
+@{
+    ViewData["Title"] = "Notice Board";
+}
+
+
+<div class="container">
+    <form asp-action="Main/NoticeBoard/NoticeBoardSave" autocomplete="off">
+
+        <div>
+
+            <label for="comment">Expiry Date</label><br />
+            <input asp-for="NoticeDateExpiry" id="datetimepicker" style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px; border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; height: 25px; width: 275px; padding-right: 15px; padding-left: 15px;background-color:white" type="text">
+        </div>
+
+
+
+        <div class="form-group">
+            @*<input type="text" class="form-control" required placeholder="Title"  style="background-color:white;height:50%;"/>*@
+
+            <label for="comment">Notice Title:</label>
+            <textarea asp-for="NoticeTitle" style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px; border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; width: 100%; padding-right: 15px; padding-left: 15px;" rows="2" id="title"></textarea>
+
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Notice Description:</label>
+            <textarea asp-for="NoticeDescription" rows="10" id="description"></textarea>
+        </div>
+        <div class="form-group">
+
+           
+
+            <button class="btn btn-primary btn-icon-split" formaction="Main/NoticeBoard/NoticeBoardSave">
+                <span class="icon text-white-50">
+                    <i class="fas fa-save"></i>
+                </span>
+                <span class="text">Save</span>
+
+            </button>
+
+            <button type="reset" class="btn btn-danger btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-times"></i>
+                </span>
+                <span class="text">Cancel</span>
+
+            </button>
+
+            @*<input type="submit" value="Save" id="submit" formaction="Main/NoticeBoard/NoticeBoardSave" class="btn btn-default" style="background-color:green" />
+
+                <input type="submit" value="Save" id="submit" formaction="Main/NoticeBoard/NoticeBoardSave" class="btn btn-default" style="background-color:green" />*@
+
+
+            @*<a href="#" class="btn btn-danger btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span class="text">Cancel</span>
+                </a>*@
+
+
+
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+@section Scripts {
+    <!-- this should go after your </body> -->
+    <link href="~/css/jquery.datetimepicker.css" rel="stylesheet" />
+    <script src="https://cdn.tiny.cloud/1/s02aol1sthzgayotj806ldxhhv6syokpzephha96p3coi0vu/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="~/vendor/jquery/jquery.js" type="text/javascript"></script>
+    <script src="~/datetimepicker/jquerydatetimepicker.js" type="text/javascript"></script>
+
+
+
+
+
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#description'
+        });
+    </script>
+    <script type="text/javascript">
+        var todaysdate = new Date();
+        jQuery('#datetimepicker').datetimepicker({
+            'dateFormat': 'dd-mm-yy',
+            'dayOfWeekStart': 1,
+            'closeOnDateSelect': true,
+            'validateOnBlur': true,
+            'minDate': -0,
+            'lang': 'en',
+            /* startDate: todaysdate.getDate().toString(),*/
+            startDate: todaysdate.getMonth() + '-' + todaysdate.getDate() + '-' + todaysdate.getFullYear(),
+            startTime: todaysdate.getTime().toString()
+
+        });
+    </script>
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+                    alert('@TempData["msg"] ');
+        </script>
+    }
+}
+

@@ -1,0 +1,172 @@
+﻿@*@model IEnumerable<Quiz_App.Models.normalAdmin>*@
+@model Quiz_App.Areas.Models.normalAdmin
+
+
+@{
+    ViewData["Title"] = "Create Admin";
+}
+
+
+
+@*<div class="container" style="text-align:center;background-color:white">
+
+    <h1 class="h4 text-gray-900 mb-4">Create Contributor : </h1>
+
+    <div class="row" style="background-color:white">
+
+        <div class="col-sm">
+
+            <form class="user" asp-action="saveContributor" id="form1" autocomplete="off">
+
+
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="text"  class="form-control form-control-user" id="exampleFirstName"
+                               placeholder="Full Name" autocomplete="off" required style="text-align:center;border-color:aqua;">
+
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+
+
+                        <input type="text" min="0" id="phone" maxlength="10" onkeypress="phoneno()"
+                               placeholder="Mobile No" autocomplete="off"
+                               required class="form-control form-control-user" style="text-align: center; border-color: aqua" />
+
+
+                    </div>
+
+                </div>
+                
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="text"  placeholder="Email ID" id="emailid"
+                               autocomplete="off" required class="form-control form-control-user" style="text-align: center; border-color: aqua">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text"  placeholder="User Name"
+                               autocomplete="off" required class="form-control form-control-user" style="text-align: center; border-color: aqua" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+
+                        <input type="text"  placeholder="Password"
+                               autocomplete="off" required class="form-control form-control-user" style="text-align: center; border-color: aqua">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder=""
+                               autocomplete="off" class="form-control form-control-user" readonly="readonly" style="text-align: center; border-color: aqua" />
+                    </div>
+                </div>
+
+
+                <table class="table-responsive" style="width:100%;margin-left:3%">
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-primary btn-icon-split" id="save" formaction="saveContributor">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-save"></i>
+                                </span>
+                                <span class="text">Save</span>
+
+                            </button>
+                        </td>
+                        <td></td>
+                        <td>
+                            <button type="reset" class="btn btn-danger btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                                <span class="text">Reset</span>
+
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+                <hr>
+            </form>
+
+
+
+        </div>
+
+    </div>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+    <div class="col-md-10 mx-auto text-center ">
+        <div class="header-title">
+            <form asp-action="NormalAdminData">
+
+                <input type="submit" value="View Admin" formaction="NormalAdminData" class="btn btn-bd-primary" />
+                <input type="submit" value="Logout" formaction="SuperAdminLogout" class="btn btn-default">
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 mx-auto" style="text-align: center; border-style: dashed; border-color: red; background-image: url('/assets/images/carousel/img3.jpg')">
+            <div class="myform form ">
+                <form asp-action="normalAdminSaveUpdate" id="form1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="adminName" class="form-control" id="txtadminName" name="adminName" required placeholder="Admin Name" style="width:50%;height:20%;background-color:white" />
+                        <span asp-validation-for="adminName" class="text-danger" style="display:none"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="adminMobile" class="form-control" id="txtadminMobile" required placeholder="Mobile No" style="width:50%;height:20%;background-color:white" />
+                        <span asp-validation-for="adminMobile" class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="adminUserName" class="form-control" id="txtadminUserName" required placeholder="User Name" style="width:50%;height:20%;background-color:white" />
+                        <span asp-validation-for="adminUserName" class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="adminUserPassword" class="form-control" id="adminUserPassword" required placeholder="Password" style="width:50%;height:20%;background-color:white" />
+                        <span asp-validation-for="adminUserPassword" class="text-danger" style="display:none"></span>
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Create Admin" id="submit" formaction="normalAdminSaveUpdate" class="btn btn-default" style="background-color:green" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+                    alert('@TempData["msg"] ');
+        </script>
+    }
+}
+
+

@@ -1,0 +1,64 @@
+﻿@*@model IEnumerable<Quiz_App.Models.normalAdmin>*@
+@model Quiz_App.Areas.Models.normalAdmin
+
+
+
+
+<div class="table-responsive" style="border-style:groove; border-color: red;text-align:center">
+
+    <div class="btn-group" style="background-image: url('/images/img1.jpg');height:25%;">
+        @*<a href="#" class="btn btn-primary">Download</a>
+            <a href="#" class="btn btn-default">Mirror</a>*@
+        <form asp-action="normalAdminSaveUpdate">
+            <input type="submit" value="Create Admin" formaction="normalAdminSaveUpdate" class="btn btn-bd-primary" />
+            <input type="submit" value="Logout" formaction="normalAdminLogout" class="btn btn-default">
+        </form>
+    </div><br />
+
+
+
+    <table class="table table-striped table-bordered table-hover table-condensed table-dark" style="margin-top:2%">
+
+        <thead>
+            <tr style="background-color:red">
+                <th scope="col">Admin ID</th>
+                <th scope="col">Admin Name</th>
+                <th scope="col">Admin Mobile</th>
+                <th scope="col">Admin User Name</th>
+                <th scope="col">Admin Password</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Date Modified</th>
+                <th scope="col">Date Modified</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (System.Data.DataRow dr in ViewBag.emp.Rows)
+                {
+                    <tr class="active">
+                        <td>@dr["AdminID"]</td>
+                        <td>@dr["AdminName"]</td>
+                        <td>@dr["AdminMobile"]</td>
+                        <td>@dr["AdminUserName"]</td>
+                        <td>@dr["AdminPassword"]</td>
+                        <td>@dr["DateCreated"]</td>
+                        <td>@dr["DateModified"]</td>
+                        <td>
+                            <a href="normalAdminUpdate?id=@dr["AdminID"]" style="color:aqua">Update</a>|
+                            <a href="normalAdminDelete?id=@dr["AdminID"]" style="color:red">Delete</a>
+                            @*<a href="/Account/normalAdminSaveUpdate" style="color:blue">New Admin</a>*@
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+                    alert('@TempData["msg"] ');
+        </script>
+    }
+}

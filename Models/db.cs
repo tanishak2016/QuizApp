@@ -7,8 +7,6 @@ using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Quiz_App.Models;
-using System.Globalization;
-
 namespace Quiz_App.Models
 {
     public class db
@@ -26,154 +24,6 @@ namespace Quiz_App.Models
         {
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             return builder.Build();
-        }
-
-        public int LoginCheck(SuperAdmin_Login sa)
-        {
-            SqlCommand cmd = new SqlCommand("sp_superLogin", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@SuperAdminPassword", sa.supAdminPassword);
-            SqlParameter oblogin = new SqlParameter();
-            oblogin.ParameterName = "@IsValid";
-            oblogin.SqlDbType = SqlDbType.Bit;
-            oblogin.Direction = ParameterDirection.Output;
-            cmd.Parameters.Add(oblogin);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            int res = Convert.ToInt32(oblogin.Value);
-            con.Close();
-            return res;
-        }
-        public Int32 normalAdminLoginCheck(SuperAdmin_Login sa)
-        {
-            SqlCommand cmd = new SqlCommand("sp_normalAdminLogin", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@adminUserName", sa.normalAdminUserName);
-            cmd.Parameters.AddWithValue("@adminPassword", sa.normalAdminPassword);
-            cmd.Parameters.AddWithValue("@ret", SqlDbType.Int);
-            cmd.Parameters["@ret"].Direction = ParameterDirection.ReturnValue;
-            con.Open();
-            cmd.ExecuteNonQuery();
-            Int32 k = Convert.ToInt32(cmd.Parameters["@ret"].Value);
-            cmd.Dispose();
-            con.Close();
-            return k;
-
-            //SqlParameter oblogin = new SqlParameter();
-            //oblogin.ParameterName = "@IsValid";
-            //oblogin.SqlDbType = SqlDbType.Bit;
-            //oblogin.Direction = ParameterDirection.Output;
-            //cmd.Parameters.Add(oblogin);
-            //con.Open();
-            //cmd.ExecuteNonQuery();
-            //int res = Convert.ToInt32(oblogin.Value);
-            //con.Close();
-            //return res;
-        }
-        public DataSet normalAdminDisplay()
-        {
-            DataSet ds = new DataSet();
-            // msg = string.Empty;
-            //sp_dispAPIUserRegistration
-            // sp_dispNormalAdmin
-            try
-            {
-                SqlCommand cmd = new SqlCommand("sp_dispNormalAdmin", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                adp.Fill(ds);
-                //  msg = "OK";
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                //  msg = ex.Message;
-                return ds;
-            }
-        }
-        public DataSet normalAdminDisplayByID(int id)
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                SqlCommand cmd = new SqlCommand("sp_dispNormalAdminbyID", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@AdminID", id);
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                adp.Fill(ds);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                //(ex.Message.ToString());
-                return ds;
-            }
-        }
-        public void normalAdminDelete(int id)
-        {
-            SqlCommand cmd = new SqlCommand("sp_deleteNormalAdmin", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@adminID", id);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
-        }
-        public string normalAdminSaveUpdate(normalAdmin na)
-        {
-            String msg = string.Empty;
-            try
-            {
-                SqlCommand cmd = new SqlCommand("sp_saveNormalAdmin", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@adminName", na.adminName);
-                cmd.Parameters.AddWithValue("@adminMobile", na.adminMobile);
-                cmd.Parameters.AddWithValue("@adminUserName", na.adminUserName);
-                cmd.Parameters.AddWithValue("@adminPassword", na.adminUserPassword);
-                cmd.Parameters.AddWithValue("@adminDateCreated", DateTime.Now);
-                //cmd.Parameters.AddWithValue("@adminDateModified", na.adminDateModified);
-                con.Open();
-                //  cmd.ExecuteNonQuery();
-                string result = cmd.ExecuteScalar().ToString();
-                con.Close();
-                return result;
-                // return ("Data Inserted Successfuly");
-            }
-            catch (Exception ex)
-            {
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-                // msg = ex.Message;
-                return (ex.Message.ToString());
-            }
-        }
-
-        public void normalAdminUpdate(normalAdmin na)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("sp_updateNormalAdmin", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@adminID", na.adminID);
-                cmd.Parameters.AddWithValue("@adminName", na.adminName);
-                cmd.Parameters.AddWithValue("@adminMobile", na.adminMobile);
-                cmd.Parameters.AddWithValue("@adminUserName", na.adminUserName);
-                cmd.Parameters.AddWithValue("@adminPassword", na.adminUserPassword);
-                //cmd.Parameters.AddWithValue("@adminDateCreated", DateTime.Now);
-                cmd.Parameters.AddWithValue("@adminDateModified", DateTime.Now);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                    ex.Message.ToString();
-                }
-            }
         }
 
         public String apiUserRegistrationSave(apiUserRegistrationModel userregistration)
@@ -228,6 +78,40 @@ namespace Quiz_App.Models
                 }
             }
             return apiuserregist;
+
+            // msg = string.Empty;
+            //try
+            //{
+            //    SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    //SqlDataAdapter da = new SqlDataAdapter();
+            //    //da.SelectCommand = cmd;
+            //    //da.Fill(ds.Tables[0]
+            //    //  msg = "OK
+            //    using (SqlDataAdapter da = new SqlDataAdapter())
+            //    {
+            //        da.SelectCommand = new SqlCommand("sp_dispAPIUserRegistration", con);
+            //        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            //        //DataSet ds = new DataSet();
+            //        da.Fill(ds, "tblAPIUserRegistration");
+
+            //        dt = ds.Tables["tblAPIUserRegistration"];
+
+            //        foreach (DataRow row in dt.Rows)
+            //        {
+            //            //manipulate your data
+            //        }
+            //    }
+            //    return dt;
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    //  msg = ex.Message;
+            //   return dt;
+            //}
+
         }
 
         public DataSet getContributor()
@@ -243,44 +127,37 @@ namespace Quiz_App.Models
             }
             catch (Exception ex)
             {
-                return ds;
+                if(con.State==ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                ex.Message.ToString();
             }
+
+            return ds;
         }
 
-        public contributor getContributorById(int? id)
+        public DataSet getContributorById(int id)
         {
-            contributor cont = new contributor();
+            DataSet ds = new DataSet();
             try
             {
                 SqlCommand cmd = new SqlCommand("sp_getContributorById", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@contributorId", id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                if (dt.Rows != null && dt.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        cont.contributorId = Convert.ToInt32(dt.Rows[i]["contributorId"]);
-                        cont.fullName = dt.Rows[i]["fullName"].ToString();
-                        cont.address = dt.Rows[i]["address"].ToString();
-                        cont.mobileNo = dt.Rows[i]["mobileNo"].ToString();
-                        cont.emailId = dt.Rows[i]["emailId"].ToString();
-                        cont.userName = dt.Rows[i]["userName"].ToString();
-                        cont.password = dt.Rows[i]["password"].ToString();
-                        cont.contributor_createdBy = dt.Rows[i]["contributor_createdBy"].ToString();
-                        cont.adminLocation = dt.Rows[i]["adminLocation"].ToString();
-                        cont.dateCreated = Convert.ToDateTime(dt.Rows[i]["dateCreated"]);
-                        cont.dateModified = Convert.ToDateTime(dt.Rows[i]["dateModified"]);
-                    }
-                }
-                return cont;
+                da.Fill(ds);
+                return ds;
             }
             catch (Exception ex)
             {
-                return cont;
+              if(con.State==ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                ex.Message.ToString();
             }
+            return ds;
         }
 
         public string saveContributor(contributor cont)
@@ -298,8 +175,7 @@ namespace Quiz_App.Models
                 cmd.Parameters.AddWithValue("@password", cont.password);
                 cmd.Parameters.AddWithValue("@contributor_createdBy", cont.contributor_createdBy);
                 cmd.Parameters.AddWithValue("@adminLocation", cont.adminLocation);
-                cont.dateCreated = DateTime.Now;
-                cmd.Parameters.AddWithValue("@dateCreated", cont.dateCreated);
+                cmd.Parameters.AddWithValue("@dateCreated", DateTime.Now);
                 con.Open();
                 string result = cmd.ExecuteScalar().ToString();
                 con.Close();
@@ -321,7 +197,6 @@ namespace Quiz_App.Models
             {
                 SqlCommand cmd = new SqlCommand("sp_updateContributor", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@contributorId", cont.contributorId);
                 cmd.Parameters.AddWithValue("@fullName", cont.fullName);
                 cmd.Parameters.AddWithValue("@address", cont.address);
                 cmd.Parameters.AddWithValue("@mobileNo", cont.mobileNo);
@@ -330,7 +205,7 @@ namespace Quiz_App.Models
                 cmd.Parameters.AddWithValue("@password", cont.password);
                 cmd.Parameters.AddWithValue("@contributor_createdBy", cont.contributor_createdBy);
                 cmd.Parameters.AddWithValue("@adminLocation", cont.adminLocation);
-                cmd.Parameters.AddWithValue("@dateModified", DateTime.Now);
+                cmd.Parameters.AddWithValue("@adminDateModified", DateTime.Now);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -345,7 +220,7 @@ namespace Quiz_App.Models
             }
         }
 
-        public void deleteContributor(int? id)
+        public void deleteContributor(int id)
         {
             SqlCommand cmd = new SqlCommand("sp_deleteContributor", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -354,6 +229,109 @@ namespace Quiz_App.Models
             cmd.ExecuteNonQuery();
             con.Close();
         }
+
+        public String apiNoticeBoardSave(apiNoticeBoardModel noticeboardmodel)
+        {
+            String msg = String.Empty;
+            try
+            {     
+                
+                SqlCommand cmd = new SqlCommand("sp_apiNoticeBoardCreate", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@NoticeTitle", noticeboardmodel.NoticeTitle);
+                cmd.Parameters.AddWithValue("@NoticeDescription", noticeboardmodel.NoticeDescription);
+                cmd.Parameters.AddWithValue("@NoticeCreatedBy", noticeboardmodel.NoticeCreatedBy);
+                cmd.Parameters.AddWithValue("@NoticeDateCreated", noticeboardmodel.NoticeDateCreated);
+                cmd.Parameters.AddWithValue("@NoticeDateExpiry", noticeboardmodel.NoticeDateExpiry);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                cmd.Dispose();
+                msg = "Notice Inserted Successfuly";
+            }
+            catch(Exception ex)
+            {
+                if(con.State==ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                return (ex.Message.ToString());
+            }
+            return msg;
+        }
+
+        public DataSet apiNoticeBoardDisplay(apiNoticeBoardModel noticeboardmodel)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_apiNoticeBoardDisplay", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(ds);
+                return ds;
+            }
+            catch(Exception ex)
+            {
+                if(con.State==ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                ex.Message.ToString();
+            }
+            return ds;
+           
+        }
+
+        public void apiNoticeBoardUpdate(apiNoticeBoardModel noticeboardmodel)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_apiNoticeBoardUpdate", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@NoticeID", noticeboardmodel.NoticeID);
+                cmd.Parameters.AddWithValue("@NoticeTitle", noticeboardmodel.NoticeTitle);
+                cmd.Parameters.AddWithValue("@NoticeDescription", noticeboardmodel.NoticeDescription);
+                cmd.Parameters.AddWithValue("@NoticeDateModified", DateTime.Now);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
+            catch(Exception ex)
+            {
+                if(con.State==ConnectionState.Open)
+                {
+                    con.Close();
+                    ex.Message.ToString();
+                }
+
+            }
+        }
+
+        public void apiNoticeBoardDelete(Int32 id)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_apiNoticeBoardDelete", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@NoticeID", id);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                if(con.State==ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                ex.Message.ToString();
+            }
+        }
+
+
 
 
     }

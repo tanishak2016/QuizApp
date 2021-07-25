@@ -371,3 +371,8 @@ G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.Owin.Host.SystemWeb.dll
 G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.Owin.Security.dll
 G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.Owin.Security.Cookies.dll
 G:\Quiz App\Quiz App\bin\Release\net5.0\Owin.dll
+G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+G:\Quiz App\Quiz App\bin\Release\net5.0\Newtonsoft.Json.dll
+G:\Quiz App\Quiz App\bin\Release\net5.0\Newtonsoft.Json.Bson.dll
+G:\Quiz App\Quiz App\obj\Release\net5.0\Razor\Views\Contributor\getContributor.cshtml.g.cs

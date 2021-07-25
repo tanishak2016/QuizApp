@@ -1,0 +1,148 @@
+﻿@model Quiz_App.Areas.Main.Models.NoticeBoardProperties
+@{
+    ViewData["Title"] = "Notice Board";
+}
+
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="card shadow mb-4" style="width:100%">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">All Notice Data</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive" style="width:100%">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Notie Title</th>
+                                <th>Notice Description</th>
+                                <th>Notice Created By</th>
+                                <th>Notice Modified By</th>
+                                <th>Notice Date Created</th>
+                                <th>Notice Date Modified</th>
+                                <th>Notice Date Expiry</th>
+                                <th>Notice Edit</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Notie Title</th>
+                                <th>Notice Description</th>
+                                <th>Notice Created By</th>
+                                <th>Notice Modified By</th>
+                                <th>Notice Date Created</th>
+                                <th>Notice Date Modified</th>
+                                <th>Notice Date Expiry</th>
+                                <th>Notice Edit</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                           
+                           @{ 
+                               foreach(System.Data.DataRow dr in ViewBag.Notice.Rows)
+            {
+                <tr class="active">
+                    <td>@dr["NoticeTitle"]</td>
+                    <td>@dr["NoticeDescription"]</td>
+                    <td>@dr["NoticeCreatedBy"]</td>
+                    <td>@dr["NoticeModifiedBy"]</td>
+                    <td>@dr["NoticeDateCreated"]</td>
+                    <td>@dr["NoticeDateModified"]</td>
+                    <td>@dr["NoticeDateExpiry"]</td>
+                    <td>
+
+                        @*@Html.RouteLink("Edit", new { Action = "NoticeBoardUpdate?id='" + @dr["NoticeID"] + "'", Controller = "NoticeBoard", area = "Main" })*@
+                        @*<a @Html.RouteLink("Edit", new { Action = "NoticeBoardUpdate?id='" + @dr["NoticeID"] + "'", Controller = "NoticeBoard", area = "Main" })></a>*@
+
+
+
+                        @*<a  asp-controller="NoticeBoard" asp-action="NoticeBoardUpdate?id=@dr["NoticeID"]" class="btn btn-sm btn-primary rounded-0">Update</a>*@
+                        
+                        <a href="NoticeBoardUpdate?id=@dr["NoticeID"]" class="btn btn-sm btn-primary rounded-0">Edit</a>
+                        <a href="NoticeBoardDelete?id=@dr["NoticeID"]" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Are You Sure You Wish To Delete This Record ');">Delete</a>
+                    </td>
+                </tr>
+            }
+                           }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var table = $('#dataTable').DataTable({
+            language: {
+                searchPlaceholder: "Search Results",
+            },
+            "lengthMenu": [
+                [5, 10, 25, 50, 100, -1],
+                [5, 10, 25, 50, 100, "All"]
+            ],
+            "autoWidth": true,
+            "responsive": true,
+            "lengthChange": true,
+            "ordering": true,
+            columnDefs: [{
+                targets: [0,1],
+                createdCell: function (cell) {
+                    var $cell = $(cell);
+
+
+                    $(cell).contents().wrapAll("<div class='content'></div>");
+                    var $content = $cell.find(".content");
+
+                    $(cell).append($("<button>Read more</button>"));
+                    $btn = $(cell).find("button");
+
+                    $content.css({
+                        "height": "50px",
+                        "overflow": "hidden"
+                    })
+                    $cell.data("isLess", true);
+
+                    $btn.click(function () {
+                        var isLess = $cell.data("isLess");
+                        $content.css("height", isLess ? "auto" : "50px")
+                        $(this).text(isLess ? "Read less" : "Read more")
+                        $cell.data("isLess", !isLess)
+                    })
+                }
+            }]
+        });
+
+        //Moving Table Filtering Search Bar To A Table Header.
+        $('#tableSearch').html($('.dataTables_filter'));
+        //Moving Results Per Page DropDown Menu To A Table Header.
+        $('#tablePerPage').html($('#table_length'));
+    });
+
+
+</script>
+
+
+
+
+
+
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+                    alert('@TempData["msg"] ');
+        </script>
+    }
+}

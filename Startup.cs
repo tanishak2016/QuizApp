@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Quiz_App
 {
     public class Startup
@@ -36,7 +37,10 @@ namespace Quiz_App
             //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             //    option.Filters.Add(new AuthorizeFilter(policy));
             //}).AddXmlSerializerFormatters();
-            
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
+            });
             
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option=>
@@ -46,9 +50,11 @@ namespace Quiz_App
                 });
 
 
-            services.AddMvc();
+            services.AddMvc(options=>options.EnableEndpointRouting=false);
+           
             services.AddMvcCore();
             services.AddControllersWithViews().AddNewtonsoftJson();
+           // services.AddRazorPages();
 
 
 
@@ -57,6 +63,26 @@ namespace Quiz_App
             services.AddControllers()
             .AddJsonOptions(options =>
                options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+
+
+
+
+
+            //services.AddControllers(options =>
+            //{
+            //    var jsonInputFormatter = options.InputFormatters
+            //        .OfType<Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter>()
+            //        .SingleOrDefault();
+            //    jsonInputFormatter.SupportedMediaTypes.Add("application/json");
+            //}
+
+            //);
+
+
+
+
+
 
 
         }
@@ -80,7 +106,7 @@ namespace Quiz_App
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -91,9 +117,23 @@ namespace Quiz_App
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapAreaControllerRoute(
+                  name: "Main",
+                  areaName: "Main",
+                 pattern: "Main/{controller=NoticeBoard}/{action=NoticeBoardSave}");
+                //pattern: "Main/{controller=Contributor}/{action=saveContributor}");
+
+
+
+                endpoints.MapAreaControllerRoute(
+                  name: "Admin",
+                  areaName: "Admin",
+                  pattern: "Admin/{controller=Account}/{action=SuperAdmin}");               
+
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Account}/{action=SuperAdmin}/{id?}");
+                    name: "default",                    
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
             
         }

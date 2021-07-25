@@ -8,14 +8,47 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Main\Views\Shared\Error.cshtml" />
+    <Content Remove="Areas\Main\Views\Shared\_ValidationScriptsPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Main\Views\Contributor\getContributor.cshtml" />
+    <None Include="Areas\Main\Views\Contributor\saveContributor.cshtml" />
+    <None Include="Areas\Main\Views\Contributor\updateContributor.cshtml" />
+    <None Include="Areas\Main\Views\Shared\Error.cshtml" />
+    <None Include="Areas\Main\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\Contributor\getContributor.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="wwwroot\datetimepicker\.gitignore" />
+    <None Include="wwwroot\datetimepicker\build\jquery.datetimepicker.full.js" />
+    <None Include="wwwroot\datetimepicker\build\jquery.datetimepicker.full.min.js" />
+    <None Include="wwwroot\datetimepicker\build\jquery.datetimepicker.min.js" />
+    <None Include="wwwroot\datetimepicker\jquery.datetimepicker.js" />
+    <None Include="wwwroot\datetimepicker\jquery.datetimepicker.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!--<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />-->
+    <PackageReference Include="jQuery-datetimepicker" Version="2.4.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="4.2.0" />
     <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="19.2.0.47" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Main\Data\" />
   </ItemGroup>
 
 </Project>

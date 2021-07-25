@@ -2163,6 +2163,8 @@ G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.deps.json
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.runtimeconfig.json
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.pdb
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
@@ -2174,6 +2176,8 @@ G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.Owin.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.Owin.Host.SystemWeb.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.Owin.Security.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.Owin.Security.Cookies.dll
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.dll
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.Bson.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Owin.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\System.Data.SqlClient.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\cs\Microsoft.CodeAnalysis.resources.dll
