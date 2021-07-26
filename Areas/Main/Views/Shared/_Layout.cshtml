@@ -99,10 +99,8 @@
                         @*<a class="collapse-item" href="@Url.Action("NoticeBoardSave","NoticeBoard",area="Main")">Create Notice</a>*@
                         <a class="collapse-item" @Html.RouteLink("Create Notice", new { Action = "NoticeBoardSave", Controller = "NoticeBoard", area = "Main" })</a>
                         <a class="collapse-item" @Html.RouteLink("Display Notice", new { Action = "NoticeBoardDisplay", Controller = "NoticeBoard", area = "Main" })</a>
-                        <a class="collapse-item" @Html.RouteLink("test index", new { Action = "Index", Controller = "test", area = "Main" })</a>
-
-                        <a class="collapse-item" href="#">Edit Notice</a>
-                        <a class="collapse-item" href="#">Delete Notice</a>
+                        @*<a class="collapse-item" href="#">Edit Notice</a>
+                        <a class="collapse-item" href="#">Delete Notice</a>*@
                     </div>
                 </div>
             </li>

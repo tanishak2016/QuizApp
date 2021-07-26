@@ -1,0 +1,34 @@
+﻿body {
+    font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+}
+
+table.dataTable tbody th, table.dataTable tbody td button {
+    background-color: #77f772;
+    padding: 1px 3px 1px 3px;
+    margin: 0px;
+    line-height: 1.0;
+    vertical-align: middle;
+    text-align: center;
+    border: 0.5px solid #808080;
+    font-size: 90%;
+    outline: none;
+}
+.input-text {
+    -moz-border-radius-topright: 30px;
+    -webkit-border-top-right-radius: 30px;
+    border-top-right-radius: 30px;
+    -moz-border-radius-bottomleft: 30px;
+    -webkit-border-bottom-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border: 1px solid #848484;
+    outline: 0;
+    height: 25px;
+    width: 275px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: white
+}

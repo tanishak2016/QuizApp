@@ -4,59 +4,91 @@
 
 
 <div class="container">
-    <div class="col-md-6 mx-auto text-center">
-        <div class="header-title">
-            <h1 class="wv-heading--title" style="background-color:red;color:white">
-                Update Admin
-            </h1>
 
+    <div class="col-md-10 mx-auto text-center ">
+        <div class="header-title">
+            <span style="font-family: 'Trebuchet MS',sans-serif; font-size: 2em;color:lime; letter-spacing: -2px; border-bottom: 2px solid black; text-transform: uppercase;">Welcome Super Admin</span>
         </div>
-    </div>
+    </div><br />
+    <div class="col-md-10 mx-auto text-center ">
+        <div class="header-title">
+            <form asp-action="NormalAdminData">
+                @*<input type="submit" value="View Admin" formaction="NormalAdminData" class="btn btn-bd-primary" />
+                    <input type="submit" value="Logout" formaction="SuperAdminLogout" class="btn btn-default">*@
+                <button class="btn btn-dark btn-icon-split" id="save" formaction="NormalAdminData">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-street-view"></i>
+                    </span>
+                    <span class="text">View Admin</span>
+                </button>
+
+                <button class="btn btn-danger btn-icon-split" formaction="SuperAdminLogout">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-backward"></i>
+                    </span>
+                    <span class="text">Logout</span>
+                </button>
+            </form>
+        </div>
+    </div><br />
 
     <div class="row">
-        <div class="col-sm-6 mx-auto" style="text-align: center; background-image: url('/assets/images/carousel/img3.jpg'); border-style: dashed; border-color: red">
+        <div class="col-sm-6 mx-auto" style="text-align: center; border-style:solid; border-color: white">
             <div class="myform form ">
                 @{
                     foreach (System.Data.DataRow dr in ViewBag.adminbyid.Rows)
                     {
-                        <form asp-action="normalAdminSaveUpdate">
+                        <form class="user" asp-action="normalAdminSaveUpdate">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                             <div class="form-group" style="display:none">
-                                @*<label asp-for="adminID" class="control-label"></label>*@
-                                <input asp-for="adminID" id="adminID" value="@dr["AdminID"]" readonly="readonly" class="form-control disabled" style="width:50%;height:20%" />
+                                <input type="text" asp-for="adminID" value="@dr["AdminID"]" class="form-control form-control-user" id="exampleFirstName"
+                                 placeholder="Full Name" required style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
                                 <span asp-validation-for="adminID" class="text-danger"></span>
                             </div>
 
 
                             <div class="form-group">
-                                @*<label asp-for="adminName" class="control-label"></label>*@
-                                <input asp-for="adminName" value="@dr["AdminName"]" class="form-control" style="width:50%;height:20%;background-color:white" />
+                                <label asp-for="adminName" class="control-label" style="font:200;font-family:cursive;color:white">Edit Name</label>
+                                <input type="text" asp-for="adminName" value="@dr["AdminName"]" class="form-control form-control-user" id="exampleFirstName"
+                                placeholder="Full Name" required style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
                                 <span asp-validation-for="adminName" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
-                                @*<label asp-for="adminMobile" class="control-label"></label>*@
-                                <input asp-for="adminMobile" value="@dr["AdminMobile"]" class="form-control" style="width:50%;height:20%;background-color:white" />
+                                <label asp-for="adminMobile" class="control-label" style="font:200;font-family:cursive;color:white">Edit Mobile</label>
+                                <input type="text" asp-for="adminMobile" value="@dr["AdminMobile"]" class="form-control form-control-user" id="exampleFirstName"
+                                placeholder="Full Name" required style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
                                 <span asp-validation-for="adminMobile" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                @*<label asp-for="adminUserName" class="control-label"></label>*@
-                                <input asp-for="adminUserName" value="@dr["AdminUserName"]" class="form-control" style="width:50%;height:20%;background-color:white" />
+                                <label asp-for="adminUserName" class="control-label" style="font:200;font-family:cursive;color:white">Edit User Name</label>
+                                <input type="text" asp-for="adminUserName" value="@dr["AdminUserName"]" class="form-control form-control-user" id="exampleFirstName"
+                                 placeholder="Full Name" required style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
                                 <span asp-validation-for="adminUserName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                @*<label asp-for="adminUserPassword" class="control-label"></label>*@
-                                <input asp-for="adminUserPassword" value="@dr["AdminPassword"]" class="form-control" style="width:50%;height:20%;background-color:white" />
+                                <label asp-for="adminUserPassword" class="control-label" style="font:200;font-family:cursive;color:white">Edit Password</label>
+                                <input type="text" asp-for="adminUserPassword" value="@dr["AdminPassword"]" class="form-control form-control-user" id="exampleFirstName"
+                                 placeholder="Full Name" required style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
                                 <span asp-validation-for="adminUserPassword" class="text-danger"></span>
                             </div>
 
                             <div>
-                                <input type="submit" value="Update" formaction="normalAdminUpdate" class="btn btn-default" />
-                                <input type="submit" value="Cancel" formaction="NormalAdminData" class="btn btn-default" />
+                                <button type="submit" class="btn btn-dark btn-icon-split" id="save" formaction="normalAdminUpdate">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-save"></i>
+                                    </span>
+                                    <span class="text">Update</span>
 
+                                </button>
+                                <button class="btn btn-danger btn-icon-split" formaction="NormalAdminData">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                    <span class="text">Cancel</span>
 
-
+                                </button>
                             </div>
 
                         </form>

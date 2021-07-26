@@ -5,12 +5,22 @@
 
 
 <div class="container">
-    <form asp-action="Main/NoticeBoard/NoticeBoardSave" autocomplete="off">
+    <form class="user" asp-action="Main/NoticeBoard/NoticeBoardSave" autocomplete="off">
 
         <div>
 
             <label for="comment">Expiry Date</label><br />
-            <input asp-for="NoticeDateExpiry" id="datetimepicker" style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px; border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; height: 25px; width: 275px; padding-right: 15px; padding-left: 15px;background-color:white" type="text">
+            @*<input asp-for="NoticeDateExpiry" id="datetimepicker" 
+                   style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px;
+ border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px;
+ border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; height: 25px; width: 275px; padding-right: 
+     15px; padding-left: 15px;background-color:white" type="text">*@
+
+
+
+            <input type="text" asp-for="NoticeDateExpiry" id="datetimepicker" class="form-control form-control-user" 
+                   placeholder="Expiry Date" required style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
+
         </div>
 
 
@@ -19,13 +29,16 @@
             @*<input type="text" class="form-control" required placeholder="Title"  style="background-color:white;height:50%;"/>*@
 
             <label for="comment">Notice Title:</label>
-            <textarea asp-for="NoticeTitle" style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px; border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; width: 100%; padding-right: 15px; padding-left: 15px;" rows="2" id="title"></textarea>
+            @*<textarea asp-for="NoticeTitle" style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px; border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; width: 100%; padding-right: 15px; padding-left: 15px;" rows="2" id="title"></textarea>*@
+            <textarea asp-for="NoticeTitle" rows="2" id="title" placeholder="Notice Title" required class="form-control form-control-user"
+           style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300"></textarea>
 
         </div>
 
         <div class="form-group">
             <label for="comment">Notice Description:</label>
-            <textarea asp-for="NoticeDescription" rows="10" id="description"></textarea>
+            <textarea asp-for="NoticeDescription" rows="10" id="description" required  class="form-control form-control-user"
+            style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300"></textarea>
         </div>
         <div class="form-group">
 

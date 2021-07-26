@@ -7,12 +7,15 @@
 
 
 <div class="container">
+    
     <div class="row">
-
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">All Notice Data</h6>
+        </div>
         <div class="card shadow mb-4" style="width:100%">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">All Notice Data</h6>
-            </div>
+
+
+
             <div class="card-body">
                 <div class="table-responsive" style="width:100%">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -41,40 +44,40 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                           
-                           @{ 
-                               foreach(System.Data.DataRow dr in ViewBag.Notice.Rows)
-            {
-                <tr class="active">
-                    <td>@dr["NoticeTitle"]</td>
-                    <td>@dr["NoticeDescription"]</td>
-                    <td>@dr["NoticeCreatedBy"]</td>
-                    <td>@dr["NoticeModifiedBy"]</td>
-                    <td>@dr["NoticeDateCreated"]</td>
-                    <td>@dr["NoticeDateModified"]</td>
-                    <td>@dr["NoticeDateExpiry"]</td>
-                    <td>
 
-                        @*@Html.RouteLink("Edit", new { Action = "NoticeBoardUpdate?id='" + @dr["NoticeID"] + "'", Controller = "NoticeBoard", area = "Main" })*@
-                        @*<a @Html.RouteLink("Edit", new { Action = "NoticeBoardUpdate?id='" + @dr["NoticeID"] + "'", Controller = "NoticeBoard", area = "Main" })></a>*@
+                            @{
+                                foreach (System.Data.DataRow dr in ViewBag.Notice.Rows)
+                                {
+                                    <tr class="active">
+                                        <td>@dr["NoticeTitle"]</td>
+                                        <td>@dr["NoticeDescription"]</td>
+                                        <td>@dr["NoticeCreatedBy"]</td>
+                                        <td>@dr["NoticeModifiedBy"]</td>
+                                        <td>@dr["NoticeDateCreated"]</td>
+                                        <td>@dr["NoticeDateModified"]</td>
+                                        <td>@dr["NoticeDateExpiry"]</td>
+                                        <td>
+
+                                            @*@Html.RouteLink("Edit", new { Action = "NoticeBoardUpdate?id='" + @dr["NoticeID"] + "'", Controller = "NoticeBoard", area = "Main" })*@
+                                            @*<a @Html.RouteLink("Edit", new { Action = "NoticeBoardUpdate?id='" + @dr["NoticeID"] + "'", Controller = "NoticeBoard", area = "Main" })></a>*@
 
 
 
-                        @*<a  asp-controller="NoticeBoard" asp-action="NoticeBoardUpdate?id=@dr["NoticeID"]" class="btn btn-sm btn-primary rounded-0">Update</a>*@
-                        
-                        <a href="NoticeBoardUpdate?id=@dr["NoticeID"]" class="btn btn-sm btn-primary rounded-0">Edit</a>
-                        <a href="NoticeBoardDelete?id=@dr["NoticeID"]" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Are You Sure You Wish To Delete This Record ');">Delete</a>
-                    </td>
-                </tr>
-            }
-                           }
+                                            @*<a  asp-controller="NoticeBoard" asp-action="NoticeBoardUpdate?id=@dr["NoticeID"]" class="btn btn-sm btn-primary rounded-0">Update</a>*@
+
+                                            <a href="NoticeBoardUpdate?id=@dr["NoticeID"]" class="btn btn-sm btn-primary rounded-0">Edit</a>
+                                            <a href="NoticeBoardDelete?id=@dr["NoticeID"]" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Are You Sure You Wish To Delete This Record ');">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        
+
     </div>
 </div>
 

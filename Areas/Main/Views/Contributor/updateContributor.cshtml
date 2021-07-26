@@ -5,10 +5,14 @@
     ViewData["Title"] = "updateContributor";
 }
 
+<div class="container" style="background-color:white">
+    <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Update Contributor :</h6><br /><br />
 
-<div class="container" style="text-align:center;background-color:white">
-    <h1 class="h4 text-gray-900 mb-4">Update Contributor : </h1>
+    @*<div class="card-header py-3"  >
+            <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Update Contributor :</h6>
+        </div><br />*@
     <div class="row" style="background-color:white">
+
         <div class="col-sm">
             @{
                 foreach (System.Data.DataRow dr in ViewBag.contributorById.Rows)
@@ -16,7 +20,7 @@
                     <form class="user" asp-action="Main/Contributor/updateContributor" id="form1" autocomplete="off">
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label asp-for="fullName" style="color: red">Full Name</label>
+                                <label asp-for="fullName" style="color:dimgray">Full Name</label>
                                 <input type="text" asp-for="contributorId" value="@dr["contributorId"]" class="form-control form-control-user" id="exampleFirstName"
                                        required style="text-align:center;border-color:aqua;display:none">
 
@@ -26,7 +30,7 @@
                             </div>
                             <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                <label asp-for="mobileNo" style="color: red">Mobile No</label>
+                                <label asp-for="mobileNo" style="color: dimgray">Mobile No</label>
 
                                 <input type="text" asp-for="mobileNo" value="@dr["mobileNo"]" min="0" id="phone" maxlength="10" onkeypress="phoneno()"
                                        required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
@@ -37,8 +41,8 @@
                         </div>
                         <div class="form-group">
                             @*<textarea asp-for="address" value="@dr["address"]" class="form-control form-control-user" rows="1" id="exampleFirstName"
-        placeholder="Address" style="text-align: center; border-color: aqua;"></textarea>*@
-                            <label asp-for="address" style="color: red">Address</label>
+                                placeholder="Address" style="text-align: center; border-color: aqua;"></textarea>*@
+                            <label asp-for="address" style="color: dimgray">Address</label>
 
 
                             <input type="text" asp-for="address" value="@dr["address"]"
@@ -53,13 +57,13 @@
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label asp-for="emailId" style="color:red">Emaild ID</label>
+                                <label asp-for="emailId" style="color: dimgray">Emaild ID</label>
 
                                 <input type="text" asp-for="emailId" value="@dr["emailId"]"
                                        required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
                             </div>
                             <div class="col-sm-6">
-                                <label asp-for="userName" style="color: red">User Name</label>
+                                <label asp-for="userName" style="color: dimgray">User Name</label>
 
                                 <input type="text" asp-for="userName" value="@dr["userName"]"
                                        class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
@@ -69,13 +73,13 @@
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label asp-for="password" style="color: red">Password</label>
+                                <label asp-for="password" style="color: dimgray">Password</label>
 
                                 <input type="text" asp-for="password" value="@dr["password"]"
                                        required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
                             </div>
                             <div class="col-sm-6">
-                                <label asp-for="contributor_createdBy" style="color: red">Created By</label>
+                                <label asp-for="contributor_createdBy" style="color: dimgray">Created By</label>
 
                                 <input type="text" asp-for="contributor_createdBy" value="@dr["contributor_createdBy"]"
                                        class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
@@ -84,15 +88,15 @@
 
 
 
-                        <div class="form-group row">
+                        <div class="form-group row" style="display:none">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label asp-for="adminLocation" style="color: red">Admin Location</label>
+                                <label asp-for="adminLocation" style="color: dimgray">Admin Location</label>
 
                                 <input type="text" asp-for="adminLocation" value="@dr["adminLocation"]"
                                        required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
                             </div>
                             <div class="col-sm-6">
-                                <label asp-for="dateCreated" style="color: red">Date Created</label>
+                                <label asp-for="dateCreated" style="color: dimgray">Date Created</label>
 
                                 <input type="text" asp-for="dateCreated" value="@dr["dateCreated"]" id="datetimepicker11"
                                        class="form-control form-control-user" readonly style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
