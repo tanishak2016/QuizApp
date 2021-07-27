@@ -60,17 +60,10 @@ namespace Quiz_App
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             // services.AddRazorPages();
 
-
-
-
-
+            
             services.AddControllers()
             .AddJsonOptions(options =>
                options.JsonSerializerOptions.PropertyNamingPolicy = null);
-
-
-
-
 
 
             //services.AddControllers(options =>
@@ -82,12 +75,6 @@ namespace Quiz_App
             //}
 
             //);
-
-
-
-
-
-
 
         }
 
