@@ -21,6 +21,7 @@
   <ItemGroup>
     <Compile Remove="Controllers\AccountController.cs" />
     <Compile Remove="Controllers\ContributorController.cs" />
+    <Compile Remove="Models\apiNoticeBoardModel.cs" />
     <Compile Remove="Models\contributor.cs" />
     <Compile Remove="Models\normalAdmin.cs" />
     <Compile Remove="Models\SuperAdmin_Login.cs" />
