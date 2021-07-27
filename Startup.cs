@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.HttpOverrides;
+
 namespace Quiz_App
 {
     public class Startup
@@ -54,7 +57,8 @@ namespace Quiz_App
            
             services.AddMvcCore();
             services.AddControllersWithViews().AddNewtonsoftJson();
-           // services.AddRazorPages();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            // services.AddRazorPages();
 
 
 
@@ -111,9 +115,13 @@ namespace Quiz_App
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy();
-            
-            
-           
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+
 
             app.UseEndpoints(endpoints =>
             {

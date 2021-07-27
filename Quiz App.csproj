@@ -8,6 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Account\**" />
+    <Compile Remove="Views\Contributor\**" />
+    <Content Remove="Views\Account\**" />
+    <Content Remove="Views\Contributor\**" />
+    <EmbeddedResource Remove="Views\Account\**" />
+    <EmbeddedResource Remove="Views\Contributor\**" />
+    <None Remove="Views\Account\**" />
+    <None Remove="Views\Contributor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AccountController.cs" />
+    <Compile Remove="Models\normalAdmin.cs" />
+    <Compile Remove="Models\SuperAdmin_Login.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Areas\Main\Views\Shared\Error.cshtml" />
     <Content Remove="Areas\Main\Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
@@ -18,7 +35,6 @@
     <None Include="Areas\Main\Views\Contributor\updateContributor.cshtml" />
     <None Include="Areas\Main\Views\Shared\Error.cshtml" />
     <None Include="Areas\Main\Views\Shared\_ValidationScriptsPartial.cshtml" />
-    <None Include="Views\Contributor\getContributor.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
@@ -35,6 +51,7 @@
   <ItemGroup>
     <!--<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />-->
     <PackageReference Include="jQuery-datetimepicker" Version="2.4.5" />
+    <PackageReference Include="Microsoft.AspNetCore.HttpOverrides" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
