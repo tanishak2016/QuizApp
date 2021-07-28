@@ -7,66 +7,58 @@
 
 
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
-
             <div class="col-xl-10 col-lg-12 col-md-9">
-
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block">
-                                <img src="~/img/quizimg.jpg" style="width:92%;height:82%;margin-left:6%;margin-top:6%" />
+                                <img src="~/img/adminimg.jpg" style="width:92%;height:82%;margin-left:6%;margin-top:6%" />
                             </div>
-
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Admin!</h1>
-                                    </div>
+                                        @*<h1 class="h4 text-gray-900 mb-4">Welcome Admin!</h1>*@
+                                        <span style="font-family: 'Trebuchet MS',sans-serif; font-size: 1.5em;color:mediumblue; letter-spacing: 0px; border-bottom: 2px solid black; text-transform: uppercase;">Welcome To Normal Admin !</span>
+                                    </div><br />
                                     <form asp-action="normalAdminLogin" class="user" autocomplete="off">
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-
-
                                         <div class="form-group">
                                             <input type="text" asp-for="normalAdminUserName" class="form-control form-control-user"
                                                    id="exampleInputEmail" required
                                                    placeholder="Enter User Name..." 
-                                                   style="background-color:white;border-color:aqua;text-align:center;border-width:unset">
-
+                                                   style="background-color: white; border-color: aqua; text-align: center; border-width: unset;margin-left:6%;">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" asp-for="normalAdminPassword" required class="form-control form-control-user"
                                                    id="exampleInputPassword" placeholder="Enter Password..." 
-                                                   style="border-color:aqua;width:88%;text-align:center;border-width:unset">
+                                                   style="border-color: aqua; width: 88%; text-align: center; border-width: unset; margin-left: 6%;">
 
                                         </div>
-                                        <div class="form-group">
+                                        @*<div class="form-group">
                                                 <div class="custom-control custom-checkbox small">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck">&nbsp;&nbsp;&nbsp;
                                                     <label class="custom-control-label" for="customCheck">
                                                         Remember Me
                                                     </label>
                                                 </div>
-                                            </div>
+                                            </div>*@
 
-                                        <button class="btn btn-primary btn-user btn-block" formaction="normalAdminLogin">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-sign-in"></i>
-                                            </span>
-                                            <span class="text">Proceed</span>
-
-                                        </button>
-
-
-
+                                    <button class="btn btn-primary btn-user btn-block" formaction="normalAdminLogin" style="width:61%;margin-left:19%;">
+                                    <span class="text">Proceed</span>
+                                    <span class="icon text-white-50">
+                                    <i class="fas fa-forward"></i>
+                                    </span>
+                                    </button>
                                         <hr>
-
+                                        <a class="btn btn-primary btn-user btn-block" href="@Url.Action("Index","Home",new {Area=""})" style="width:61%;margin-left:19%;">
+                                        <span class="icon text-white-50">
+                                        <i class="fas fa-backward"></i>
+                                        </span>
+                                        <span class="text">Go Back</span>
+                                        </a>
                                     </form>
-
-
                                 </div>
                             </div>
                         </div>

@@ -38,7 +38,7 @@
                 @{
                     foreach (System.Data.DataRow dr in ViewBag.adminbyid.Rows)
                     {
-                        <form class="user" asp-action="normalAdminSaveUpdate">
+                        <form class="user" asp-action="normalAdminSaveUpdate" autocomplete="off">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                             <div class="form-group" style="display:none">

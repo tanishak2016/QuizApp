@@ -17,12 +17,23 @@
 
         <div class="card-header py-3">
             <form asp-action="normalAdminSaveUpdate">
-                <button class="btn btn-dark btn-icon-split" id="save" formaction="normalAdminSaveUpdate">
+
+
+                <a class="btn btn-dark btn-icon-split" href="@Url.Action("normalAdminSaveUpdate","Account",new {Area="Admin"})">
                     <span class="icon text-white-50">
                         <i class="fas fa-street-view"></i>
                     </span>
                     <span class="text">Create Admin</span>
-                </button>
+                </a>
+
+
+
+                @*<button class="btn btn-dark btn-icon-split" id="save" formaction="normalAdminSaveUpdate">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-street-view"></i>
+                    </span>
+                    <span class="text">Create Admin</span>
+                </button>*@
 
                 <button class="btn btn-danger btn-icon-split" formaction="SuperAdminLogout">
                     <span class="icon text-white-50">

@@ -370,7 +370,6 @@ G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 G:\Quiz App\Quiz App\bin\Release\net5.0\Newtonsoft.Json.dll
 G:\Quiz App\Quiz App\bin\Release\net5.0\Newtonsoft.Json.Bson.dll
-G:\Quiz App\Quiz App\obj\Release\net5.0\Razor\Views\Contributor\getContributor.cshtml.g.cs
 G:\Quiz App\Quiz App\bin\Release\net5.0\Humanizer.dll
 G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 G:\Quiz App\Quiz App\bin\Release\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll

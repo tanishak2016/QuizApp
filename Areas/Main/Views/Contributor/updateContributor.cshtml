@@ -7,112 +7,148 @@
 
 <div class="container" style="background-color:white">
     <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Update Contributor :</h6><br /><br />
+
+    @*<div class="card-header py-3"  >
+            <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Update Contributor :</h6>
+        </div><br />*@
     <div class="row" style="background-color:white">
 
         <div class="col-sm">
-            @*@{
+            @{
                 foreach (System.Data.DataRow dr in ViewBag.contributorById.Rows)
-                {*@
-            <form class="user" asp-action="Main/Contributor/updateContributor" id="form1" autocomplete="off">
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label asp-for="fullName" style="color:dimgray">Full Name</label>
-                        <input type="text" asp-for="contributorId" class="form-control form-control-user" id="exampleFirstName"
-                               required style="text-align:center;border-color:aqua;display:none">
+                {
+                    <form class="user" asp-action="Main/Contributor/updateContributor" id="form1" autocomplete="off">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label asp-for="fullName" style="color:dimgray">Full Name</label>
+                                <input type="text" asp-for="contributorId" value="@dr["contributorId"]" class="form-control form-control-user" id="exampleFirstName"
+                                       required style="text-align:center;border-color:aqua;display:none">
 
-                        <input type="text" asp-for="fullName" class="form-control form-control-user" id="exampleFirstName"
-                               required style="text-align:center;border-color:aqua;font-family:Arial;font-size:large;font-weight:300">
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label asp-for="mobileNo" style="color: dimgray">Mobile No</label>
+                                <input type="text" asp-for="fullName" value="@dr["fullName"]" class="form-control form-control-user" id="exampleFirstName"
+                                       required style="text-align:center;border-color:aqua;font-family:Arial;font-size:large;font-weight:300">
 
-                        <input type="text" asp-for="mobileNo" min="0" id="phone" maxlength="10" onkeypress="phoneno()"
-                               required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    @*<textarea asp-for="address" value="@dr["address"]" class="form-control form-control-user" rows="1" id="exampleFirstName"
-                        placeholder="Address" style="text-align: center; border-color: aqua;"></textarea>*@
-                    <label asp-for="address" style="color: dimgray">Address</label>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
 
-                    <input type="text" asp-for="address"
-                           required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label asp-for="emailId" style="color: dimgray">Emaild ID</label>
+                                <label asp-for="mobileNo" style="color: dimgray">Mobile No</label>
 
-                        <input type="text" asp-for="emailId" required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
-                    </div>
-                    <div class="col-sm-6">
-                        <label asp-for="userName" style="color: dimgray">User Name</label>
+                                <input type="text" asp-for="mobileNo" value="@dr["mobileNo"]" min="0" id="phone" maxlength="10" onkeypress="phoneno()"
+                                       required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
 
-                        <input type="text" asp-for="userName"
-                               class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label asp-for="password" style="color: dimgray">Password</label>
 
-                        <input type="text" asp-for="password"
-                               required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
-                    </div>
-                    <div class="col-sm-6">
-                        <label asp-for="contributor_createdBy" style="color: dimgray">Created By</label>
+                            </div>
 
-                        <input type="text" asp-for="contributor_createdBy"
-                               class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
-                    </div>
-                </div>
-                <div class="form-group row" style="display:none">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label asp-for="adminLocation" style="color: dimgray">Admin Location</label>
+                        </div>
+                        <div class="form-group">
+                            @*<textarea asp-for="address" value="@dr["address"]" class="form-control form-control-user" rows="1" id="exampleFirstName"
+                                placeholder="Address" style="text-align: center; border-color: aqua;"></textarea>*@
+                            <label asp-for="address" style="color: dimgray">Address</label>
 
-                        <input type="text" asp-for="adminLocation"
-                               required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
-                    </div>
-                    <div class="col-sm-6">
-                        <label asp-for="dateCreated" style="color: dimgray">Date Created</label>
 
-                        <input type="text" asp-for="dateCreated" id="datetimepicker11"
-                               class="form-control form-control-user" readonly style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
-                    </div>
-                </div>
-                <br /><br />
+                            <input type="text" asp-for="address" value="@dr["address"]"
+                                   required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
 
-                <table class="table-responsive" style="width:100%;margin-left:3%">
-                    <tr>
-                        <td></td>
-                        <td>
-                            <button class="btn btn-primary btn-icon-split" formaction="updateContributor">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-save"></i>
-                                </span>
-                                <span class="text">Update</span>
-                            </button>
-                        </td>
-                        <td></td>
-                        <td>
-                            <button class="btn btn-danger btn-icon-split" formaction="getContributorData">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-times"></i>
-                                </span>
-                                <span class="text">Reject</span>
-                            </button>
-                        </td>
-                    </tr>
-                </table>
 
-            </form>
-            @*}
-                }*@
+
+
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label asp-for="emailId" style="color: dimgray">Emaild ID</label>
+
+                                <input type="text" asp-for="emailId" value="@dr["emailId"]"
+                                       required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
+                            </div>
+                            <div class="col-sm-6">
+                                <label asp-for="userName" style="color: dimgray">User Name</label>
+
+                                <input type="text" asp-for="userName" value="@dr["userName"]"
+                                       class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label asp-for="password" style="color: dimgray">Password</label>
+
+                                <input type="text" asp-for="password" value="@dr["password"]"
+                                       required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
+                            </div>
+                            <div class="col-sm-6">
+                                <label asp-for="contributor_createdBy" style="color: dimgray">Created By</label>
+
+                                <input type="text" asp-for="contributor_createdBy" value="@dr["contributor_createdBy"]"
+                                       class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row" style="display:none">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label asp-for="adminLocation" style="color: dimgray">Admin Location</label>
+
+                                <input type="text" asp-for="adminLocation" value="@dr["adminLocation"]"
+                                       required class="form-control form-control-user" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
+                            </div>
+                            <div class="col-sm-6">
+                                <label asp-for="dateCreated" style="color: dimgray">Date Created</label>
+
+                                <input type="text" asp-for="dateCreated" value="@dr["dateCreated"]" id="datetimepicker11"
+                                       class="form-control form-control-user" readonly style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
+                            </div>
+                        </div>
+
+                        <br /><br />
+
+
+                        <table class="table-responsive" style="width:100%;margin-left:3%">
+                            <tr>
+                                <td></td>
+                                <td>
+
+                                    <button class="btn btn-primary btn-icon-split" formaction="updateContributor">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-save"></i>
+                                        </span>
+                                        <span class="text">Update</span>
+
+                                    </button>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-danger btn-icon-split" formaction="getContributorData">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                        <span class="text">Reject</span>
+
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+                }
+            }
         </div>
     </div>
 </div>
 
 
+
+
+
+
+
+
+
 @section Scripts {
+
 
     <link href="~/css/jquery.datetimepicker.css" rel="stylesheet" />
     <script src="https://cdn.tiny.cloud/1/s02aol1sthzgayotj806ldxhhv6syokpzephha96p3coi0vu/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -120,9 +156,12 @@
     <script src="~/datetimepicker/jquerydatetimepicker.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+
+
         $(document).ready(function () {
         });
         $('#save').click(function () {
+
 
             var EmailId = $("#emailid").val();
             if ($.trim(EmailId).length == 0) {
@@ -165,6 +204,10 @@
 
         }
 
+
+
+
+
         var todaysdate = new Date();
         jQuery('#datetimepicker').datetimepicker({
             'dateFormat': 'dd-mm-yy',
@@ -176,8 +219,18 @@
             /* startDate: todaysdate.getDate().toString(),*/
             startDate: todaysdate.getMonth() + '-' + todaysdate.getDate() + '-' + todaysdate.getFullYear(),
             startTime: todaysdate.getTime().toString()
+
         });
     </script>
+
+
+
+
+
+
+
+
+
 
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

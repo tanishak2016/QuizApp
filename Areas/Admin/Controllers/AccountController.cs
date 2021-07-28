@@ -17,6 +17,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Session;
 using Quiz_App.Areas.Admin.Models;
 using Quiz_App.Areas.Models;
+using Microsoft.Extensions.Configuration;
+using FreeGeoIPCore;
+using MetOfficeDataPoint;
+using MetOfficeDataPoint.Models;
+using MetOfficeDataPoint.Models.GeoCoordinate;
 
 namespace Quiz_App.Areas.Controllers
 {
@@ -24,16 +29,22 @@ namespace Quiz_App.Areas.Controllers
     [Area("Admin")]    
     public class AccountController : Controller
     {
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _config;
         
-         DAL dbobj = new DAL();
-        
-        String msg;
+        DAL dbobj = new DAL();        
+         String msg;
+
+        public AccountController(IConfiguration config, IHttpContextAccessor httpContextAccessor)
+        {
+            _config = config;
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         public IActionResult Index()
         {
-
-
-          return View();
+         return View();
         }
 
         [HttpGet]
@@ -100,9 +111,9 @@ namespace Quiz_App.Areas.Controllers
 
         }
 
-        [AllowAnonymous]
+       // [Authorize]
         [HttpPost]
-        public  async Task<IActionResult> normalAdminLogin(SuperAdmin_Login sa,string ReturnUrl)
+        public  async Task<IActionResult> normalAdminLogin(SuperAdmin_Login sa,string ReturnUrl, double longitude, double latitude)
         {       
            
              int res = dbobj.normalAdminLoginCheck(sa);
@@ -123,15 +134,7 @@ namespace Quiz_App.Areas.Controllers
                 username = sa.normalAdminUserName;
                  TempData["username"] = username;
                 ViewBag.user = username;
-
-
                 
-
-                
-               
-               // HttpContext.Current.Session.Add("UserFullName", username);
-                
-
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,sa.normalAdminUserName)
@@ -155,7 +158,7 @@ namespace Quiz_App.Areas.Controllers
             return View();
         }
 
-        [Authorize]
+       // [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult normalAdminSaveUpdate( [Bind] normalAdmin na)

@@ -7,20 +7,16 @@ using Quiz_App.Areas.Main.Models;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Authorization;
-using System.Net.Http;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using System.Net;
-using System.Net.Sockets;
 
 namespace Quiz_App.Areas.Main.Controllers
 {
-    [Area("Main")]
+   [Area("Main")]
     public class ContributorController : Controller
     {
         DAL dbObj = new DAL();
         GeoInfoProvider geoInfoProvider = new GeoInfoProvider();
         GeoInfoViewModel geoInfoModel = new GeoInfoViewModel();
+        
 
         public IActionResult Index()
         {
@@ -65,18 +61,20 @@ namespace Quiz_App.Areas.Main.Controllers
             return View();
         }
 
-        // [Authorize]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> saveContributor(contributor cont)
+        public async Task<IActionResult> saveContributor(contributor cont,String createdBy)
         {
             geoInfoModel = await geoInfoProvider.GetGeoInfo();
             try
             {
                 if (ModelState.IsValid)
                 {
+
                     cont.adminLocation = geoInfoModel.City + ", " + geoInfoModel.RegionName + ", " + geoInfoModel.CountryName;
-                    string res = dbObj.saveContributor(cont);
+                    createdBy = TempData["username"].ToString();
+                    string res = dbObj.saveContributor(cont,createdBy);
                     if (res == "Success")
                     {
                         TempData["msg"] = "Contributor Record saved successfully!";
@@ -115,21 +113,21 @@ namespace Quiz_App.Areas.Main.Controllers
         [HttpGet]
         public IActionResult updateContributor(int id)
         {
-            contributor cont = null;
+            //contributor cont = null;
             try
             {
                 if (ModelState.IsValid)
                 {
                     DataSet ds = new DataSet();
-                    cont = dbObj.getContributorById(id);
-                    //ViewBag.contributorById = cont;
+                    ds = dbObj.getContributorById(id);
+                    ViewBag.contributorById = ds.Tables[0];
                 }
             }
             catch (Exception ex)
             {
                 TempData["msg"] = ex.Message;
             }
-            return View(cont);
+            return View();
         }
 
         [HttpPost]

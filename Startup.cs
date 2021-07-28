@@ -15,8 +15,8 @@ using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace Quiz_App
 {
@@ -41,6 +41,11 @@ namespace Quiz_App
             //    option.Filters.Add(new AuthorizeFilter(policy));
             //}).AddXmlSerializerFormatters();
 
+            services.AddHttpContextAccessor();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(1);
             });
@@ -57,13 +62,19 @@ namespace Quiz_App
            
             services.AddMvcCore();
             services.AddControllersWithViews().AddNewtonsoftJson();
-            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-            // services.AddRazorPages();
+           // services.AddRazorPages();
 
-            
+
+
+
+
             services.AddControllers()
             .AddJsonOptions(options =>
                options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+
+
+
 
 
             //services.AddControllers(options =>
@@ -75,6 +86,12 @@ namespace Quiz_App
             //}
 
             //);
+
+
+
+
+
+
 
         }
 
@@ -102,13 +119,9 @@ namespace Quiz_App
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy();
-
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
-
-
+            
+            
+           
 
             app.UseEndpoints(endpoints =>
             {
@@ -124,10 +137,10 @@ namespace Quiz_App
                 endpoints.MapAreaControllerRoute(
                   name: "Admin",
                   areaName: "Admin",
-                  pattern: "Admin/{controller=Account}/{action=SuperAdmin}");               
+                  pattern: "Admin/{controller=Account}/{action=SuperAdmin}");
 
                 endpoints.MapControllerRoute(
-                    name: "default",                    
+                    name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
             
