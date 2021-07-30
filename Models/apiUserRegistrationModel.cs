@@ -19,9 +19,9 @@ namespace Quiz_App.Models
         public String userUserName { get; set; }
         [Required]
         public String userPassword { get; set; }
-        [Required]
+        
         public String userDateCreated { get; set; }
-        [Required]
+        
         public String userDateModified { get; set; }
     }
 }

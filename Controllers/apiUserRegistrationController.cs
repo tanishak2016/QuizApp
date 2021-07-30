@@ -23,7 +23,7 @@ namespace Quiz_App.Controllers
         // GET: api/<apiUserRegistration>
 
         [HttpGet]
-        public List<apiUserRegistrationModel> DisplayUserRegistration()
+        public List<apiUserRegistrationModel> DisplayUserRegistrationOld()
         {
             List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();
             try
@@ -50,7 +50,7 @@ namespace Quiz_App.Controllers
 
         // POST api/<apiUserRegistration>
         [HttpPost]
-        public string SaveUserRegistration(apiUserRegistrationModel userregistration)
+        public string SaveUserRegistrationOld(apiUserRegistrationModel userregistration)
         {
             string message = string.Empty;
             try
@@ -87,5 +87,73 @@ namespace Quiz_App.Controllers
         public void Delete(int id)
         {
         }
+
+        [HttpGet]
+        public IActionResult DisplayUserRegistration()
+        {
+            ResponseFormat response = new ResponseFormat();
+            response.ResponseID = System.Guid.NewGuid().ToString();
+            List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    apiuserregist = dbobj.apiUserRegistrationDisplay();//.ToString();
+                    response.IsSuccess = true;
+                    response.Data = apiuserregist;
+                }
+            }
+            catch (Exception ex)
+            {
+                //ex.Message.ToString();
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                response.ErrorCode = "500";
+            }
+            return Ok(response);
+        }
+
+        // POST api/<apiUserRegistration>
+        [HttpPost]
+        public IActionResult SaveUserRegistration(apiUserRegistrationModel userregistration)
+        {
+
+            ResponseFormat response = new ResponseFormat();
+            response.ResponseID = System.Guid.NewGuid().ToString();
+
+            string message = string.Empty;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    String result = dbobj.apiUserRegistrationSave(userregistration);
+                    if (result == "Success")
+                    {
+                        message = "insert success";
+                        response.IsSuccess = true;
+                        response.Message = message;
+
+                        ModelState.Clear();
+                    }
+                    else
+                    {
+                        message = "id already taken";
+                        response.IsSuccess = false;
+                        response.Message = message;
+                        response.ErrorCode = "E500";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //ex.Message.ToString();
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                response.ErrorCode = "500";
+            }
+            return Ok(response);
+        }
+
+
     }
 }
