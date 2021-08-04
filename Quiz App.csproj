@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\apiNoticeBoardModel.cs" />
+    <Compile Remove="Models\contributor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Areas\Main\Views\Shared\Error.cshtml" />
     <Content Remove="Areas\Main\Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>

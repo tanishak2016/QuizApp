@@ -26,12 +26,12 @@ namespace Quiz_App.Models
             return builder.Build();
         }
 
-        public String apiUserRegistrationSave(apiUserRegistrationModel userregistration)
+        public string saveApiUserRegistration(apiUserRegistrationModel userregistration)
         {
             string msg = String.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("sp_apiUserRegistration", con);
+                SqlCommand cmd = new SqlCommand("sp_saveApiUserRegistration", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userfullname", userregistration.userFullName);
                 cmd.Parameters.AddWithValue("@usermobile", userregistration.userMobile);
@@ -53,10 +53,11 @@ namespace Quiz_App.Models
                 return (ex.Message.ToString());
             }
         }
-        public List<apiUserRegistrationModel> apiUserRegistrationDisplay()
+
+        public List<apiUserRegistrationModel> getApiUserRegistration()
         {
             List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();
-            SqlCommand cmd = new SqlCommand("sp_dispAPIUserRegistration", con);
+            SqlCommand cmd = new SqlCommand("sp_getApiUserRegistration", con);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -77,24 +78,21 @@ namespace Quiz_App.Models
                 }
             }
             return apiuserregist;
-
-
         }
 
-        public DataTable apiUserRegistrationDisplayByID(int? id, apiUserRegistrationModel userregistration)
+        public DataTable getApiUserRegistrationById(int? id, apiUserRegistrationModel userregistration)
         {
             DataTable dt = new DataTable();
-
             try
             {
-                SqlCommand cmd = new SqlCommand("sp_apiUserRegistrationDisplayByID", con);
+                SqlCommand cmd = new SqlCommand("sp_getApiUserRegistrationById", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userID", id);
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);
-                if(dt.Rows!=null && dt.Rows.Count>0)
+                if (dt.Rows != null && dt.Rows.Count > 0)
                 {
-                    for(int i=0;i<dt.Rows.Count;i++)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         userregistration.userFullName = dt.Rows[i]["userFullName"].ToString();
                         userregistration.userMobile = dt.Rows[i]["userMobile"].ToString();
@@ -106,12 +104,10 @@ namespace Quiz_App.Models
                     }
                 }
                 return dt;
-
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if(con.State==ConnectionState.Open)
+                if (con.State == ConnectionState.Open)
                 {
                     con.Close();
                     ex.Message.ToString();
@@ -120,14 +116,14 @@ namespace Quiz_App.Models
             return dt;
         }
 
-        public void apiUserRegistrationUpdate(apiUserRegistrationModel userregistration)
+        public void updateApiUserRegistration(apiUserRegistrationModel userregistration)
         {
             try
             {
-                String _dateModified = string.Empty;
+                string _dateModified = string.Empty;
                 userregistration.userDateModified = DateTime.Now.ToString();
                 _dateModified = DateTime.Parse(userregistration.userDateModified).ToString();
-                SqlCommand cmd = new SqlCommand("sp_apiUserRegistrationUpdate", con);
+                SqlCommand cmd = new SqlCommand("sp_updateApiUserRegistration", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userID", userregistration.id);
                 cmd.Parameters.AddWithValue("@userfullname", userregistration.userUserName);
@@ -140,24 +136,22 @@ namespace Quiz_App.Models
                 cmd.ExecuteNonQuery();
                 con.Close();
                 cmd.Dispose();
-
-
             }
             catch (Exception ex)
             {
-                if(con.State==ConnectionState.Open)
+                if (con.State == ConnectionState.Open)
                 {
                     con.Close();
                 }
-               ex.Message.ToString();
+                ex.Message.ToString();
             }
-
         }
-        public void apiUserRegistrationDelete(Int32 id)
+
+        public void deleteApiUserRegistration(int id)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("sp_apiUserRegistrationDelete", con);
+                SqlCommand cmd = new SqlCommand("sp_deleteApiUserRegistration", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userID", id);
                 con.Open();
@@ -165,18 +159,15 @@ namespace Quiz_App.Models
                 con.Close();
                 cmd.Dispose();
             }
-            catch (Exception ex) { 
-                if(con.State==ConnectionState.Open)
+            catch (Exception ex)
+            {
+                if (con.State == ConnectionState.Open)
                 {
                     con.Close();
                 }
                 ex.Message.ToString();
-                
-}
+            }
         }
-
-
-
 
 
 

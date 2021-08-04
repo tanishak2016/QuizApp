@@ -31,7 +31,7 @@ namespace Quiz_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    apiuserregist = dbobj.apiUserRegistrationDisplay();//.ToString();
+                    apiuserregist = dbobj.getApiUserRegistration();//.ToString();
 
                 }
             }
@@ -58,7 +58,7 @@ namespace Quiz_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    String result = dbobj.apiUserRegistrationSave(userregistration);
+                    String result = dbobj.saveApiUserRegistration(userregistration);
                     if (result == "Success")
                     {
                         message = "insert success";
@@ -89,9 +89,10 @@ namespace Quiz_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    apiuserregist = dbobj.apiUserRegistrationDisplay();//.ToString();
+                    apiuserregist = dbobj.getApiUserRegistration();//.ToString();
                     response.IsSuccess = true;
                     response.Data = apiuserregist;
+                    response.StatusCode = 200;
                 }
             }
             catch (Exception ex)
@@ -99,7 +100,7 @@ namespace Quiz_App.Controllers
                 //ex.Message.ToString();
                 response.IsSuccess = false;
                 response.Message = ex.Message;
-                response.ErrorCode = "500";
+                response.StatusCode = 500;
             }
             return Ok(response);
         }
@@ -108,7 +109,6 @@ namespace Quiz_App.Controllers
         [HttpPost]
         public IActionResult SaveUserRegistration(apiUserRegistrationModel userregistration)
         {
-
             ResponseFormat response = new ResponseFormat();
             response.ResponseID = System.Guid.NewGuid().ToString();
             string message = string.Empty;
@@ -116,12 +116,13 @@ namespace Quiz_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    String result = dbobj.apiUserRegistrationSave(userregistration);
+                    String result = dbobj.saveApiUserRegistration(userregistration);
                     if (result == "Success")
                     {
                         message = "insert success";
                         response.IsSuccess = true;
                         response.Message = message;
+                        response.StatusCode = 200;
 
                         ModelState.Clear();
                     }
@@ -130,7 +131,7 @@ namespace Quiz_App.Controllers
                         message = "id already taken";
                         response.IsSuccess = false;
                         response.Message = message;
-                        response.ErrorCode = "E500";
+                        response.StatusCode = 500;
                     }
                 }
             }
@@ -139,7 +140,7 @@ namespace Quiz_App.Controllers
                 //ex.Message.ToString();
                 response.IsSuccess = false;
                 response.Message = ex.Message;
-                response.ErrorCode = "500";
+                response.StatusCode = 500;
             }
             return Ok(response);
         }
@@ -150,7 +151,6 @@ namespace Quiz_App.Controllers
         [HttpPut]
         public IActionResult UpdateUserRegistration(apiUserRegistrationModel userregistration)
         {
-
             ResponseFormat response = new ResponseFormat();
             response.ResponseID = System.Guid.NewGuid().ToString();
             String message = string.Empty;
@@ -158,24 +158,25 @@ namespace Quiz_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    dbobj.apiUserRegistrationUpdate(userregistration);
+                    dbobj.updateApiUserRegistration(userregistration);
                     message = "Update Success";
                     response.IsSuccess = true;
                     response.Message = message;
+                    response.StatusCode = 200;
+
                     ModelState.Clear();
                 }
                 else
                 {
                     response.IsSuccess = false;
-                    response.ErrorCode = "E500";
+                    response.StatusCode = 500;
                 }
-
             }
             catch (Exception ex)
             {
                 response.IsSuccess = false;
                 response.Message = ex.Message;
-                response.ErrorCode = "500";
+                response.StatusCode = 500;
             }
             return Ok(response);
 
@@ -185,7 +186,6 @@ namespace Quiz_App.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUserRegistration(int id)
         {
-
             ResponseFormat response = new ResponseFormat();
             response.ResponseID = System.Guid.NewGuid().ToString();
             String message = string.Empty;
@@ -193,31 +193,30 @@ namespace Quiz_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    dbobj.apiUserRegistrationDelete(id);
+                    dbobj.deleteApiUserRegistration(id);
                     message = "Delete Success";
                     response.IsSuccess = true;
                     response.Message = message;
+                    response.StatusCode = 200;
+
                     ModelState.Clear();
                 }
                 else
                 {
                     response.IsSuccess = false;
-                    response.ErrorCode = "E500";
-
+                    response.StatusCode = 500;
                 }
-
-
             }
             catch (Exception ex)
             {
                 response.IsSuccess = false;
                 response.Message = ex.Message;
-                response.ErrorCode = "500";
+                response.StatusCode = 500;
             }
             return Ok(response);
 
 
         }
     }
-    }
+}
 

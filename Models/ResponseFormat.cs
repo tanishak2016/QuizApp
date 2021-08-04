@@ -11,7 +11,7 @@ namespace Quiz_App.Models
         public string Message { get; set; }
         public dynamic Data { get; set; }
         public string ResponseID { get; set; }
-        public string ErrorCode { get; set; }
+        public int StatusCode { get; set; }
 
     }
 }
