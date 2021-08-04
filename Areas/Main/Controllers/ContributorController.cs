@@ -15,8 +15,7 @@ namespace Quiz_App.Areas.Main.Controllers
     {
         DAL dbObj = new DAL();
         GeoInfoProvider geoInfoProvider = new GeoInfoProvider();
-        GeoInfoViewModel geoInfoModel = new GeoInfoViewModel();
-        
+        GeoInfoViewModel geoInfoModel = new GeoInfoViewModel();        
 
         public IActionResult Index()
         {
@@ -72,7 +71,6 @@ namespace Quiz_App.Areas.Main.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
                     cont.adminLocation = geoInfoModel.City + ", " + geoInfoModel.RegionName + ", " + geoInfoModel.CountryName+","+geoInfoModel.ZipCode;
                     createdBy = TempData["username"].ToString();
                     string res = dbObj.saveContributor(cont,createdBy);
@@ -114,21 +112,21 @@ namespace Quiz_App.Areas.Main.Controllers
         [HttpGet]
         public IActionResult updateContributor(int id)
         {
-            //contributor cont = null;
+            contributor cont = null;
             try
             {
                 if (ModelState.IsValid)
                 {
                     DataSet ds = new DataSet();
-                    ds = dbObj.getContributorById(id);
-                    ViewBag.contributorById = ds.Tables[0];
+                    cont = dbObj.getContributorById(id);
+                    //ViewBag.contributorById = ds.Tables[0];
                 }
             }
             catch (Exception ex)
             {
                 TempData["msg"] = ex.Message;
             }
-            return View();
+            return View(cont);
         }
 
         [HttpPost]
@@ -149,9 +147,6 @@ namespace Quiz_App.Areas.Main.Controllers
             }
             return View(cont);
         }
-
-       
-
 
         public IActionResult deleteContributor(int id)
         {

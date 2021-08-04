@@ -20,7 +20,6 @@ namespace Quiz_App.Areas.Main.Models
             var configuration = GetConfiguration();
             con = new SqlConnection(configuration.GetSection("Data").GetSection("ConnectionString").Value);
         }
-
         public IConfigurationRoot GetConfiguration()
         {
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -28,18 +27,13 @@ namespace Quiz_App.Areas.Main.Models
         }
 
 
-
-
-
-        public String apiNoticeBoardSave(NoticeBoardProperties noticeboardmodel,String username)
+        public String apiNoticeBoardSave(NoticeBoardProperties noticeboardmodel, String username)
         {
             String msg = String.Empty;
-            String _ExpiryDateTime = string.Empty;           
-          
+            String _ExpiryDateTime = string.Empty;
             try
             {
-
-                _ExpiryDateTime= noticeboardmodel.NoticeDateExpiry;
+                _ExpiryDateTime = noticeboardmodel.NoticeDateExpiry;
                 DateTime _ConvertedExpiryDateTime = DateTime.Parse(_ExpiryDateTime);
                 SqlCommand cmd = new SqlCommand("sp_apiNoticeBoardCreate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -47,7 +41,7 @@ namespace Quiz_App.Areas.Main.Models
                 cmd.Parameters.AddWithValue("@NoticeDescription", noticeboardmodel.NoticeDescription);
                 cmd.Parameters.AddWithValue("@NoticeCreatedBy", username);
                 cmd.Parameters.AddWithValue("@NoticeDateCreated", DateTime.Now);
-                cmd.Parameters.AddWithValue("@NoticeDateExpiry",_ConvertedExpiryDateTime );
+                cmd.Parameters.AddWithValue("@NoticeDateExpiry", _ConvertedExpiryDateTime);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -68,7 +62,6 @@ namespace Quiz_App.Areas.Main.Models
         public DataSet apiNoticeBoardDisplay()
         {
             DataSet ds = new DataSet();
-
             try
             {
                 SqlCommand cmd = new SqlCommand("sp_apiNoticeBoardDisplay", con);
@@ -86,7 +79,6 @@ namespace Quiz_App.Areas.Main.Models
                 ex.Message.ToString();
             }
             return ds;
-
         }
 
         public DataSet apiNoticeBoardDisplayByID(int id)
@@ -127,10 +119,8 @@ namespace Quiz_App.Areas.Main.Models
             Regex rx = new Regex("<[^>]*>");
             dis = rx.Replace(dis, string.Empty);
 
-
             try
             {
-                
                 SqlCommand cmd = new SqlCommand("sp_apiNoticeBoardUpdate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@NoticeID", noticeboardmodel.NoticeID);
@@ -141,7 +131,6 @@ namespace Quiz_App.Areas.Main.Models
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-
             }
             catch (Exception ex)
             {
@@ -150,7 +139,6 @@ namespace Quiz_App.Areas.Main.Models
                     con.Close();
                     ex.Message.ToString();
                 }
-
             }
         }
 
@@ -175,9 +163,6 @@ namespace Quiz_App.Areas.Main.Models
             }
         }
 
-
-
-
         public DataSet getContributor()
         {
             DataSet ds = new DataSet();
@@ -195,18 +180,35 @@ namespace Quiz_App.Areas.Main.Models
             }
         }
 
-        public DataSet getContributorById(int? id)
+        public contributor getContributorById(int? id)
         {
             contributor cont = new contributor();
-            DataSet ds = new DataSet();
             try
             {
                 SqlCommand cmd = new SqlCommand("sp_getContributorById", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@contributorId", id);
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                adp.Fill(ds);
-                return ds;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        cont.contributorId = Convert.ToInt32(dt.Rows[i]["contributorId"]);
+                        cont.fullName = dt.Rows[i]["fullName"].ToString();
+                        cont.address = dt.Rows[i]["address"].ToString();
+                        cont.mobileNo = dt.Rows[i]["mobileNo"].ToString();
+                        cont.emailId = dt.Rows[i]["emailId"].ToString();
+                        cont.userName = dt.Rows[i]["userName"].ToString();
+                        cont.password = dt.Rows[i]["password"].ToString();
+                        cont.contributor_createdBy = dt.Rows[i]["contributor_createdBy"].ToString();
+                        cont.adminLocation = dt.Rows[i]["adminLocation"].ToString();
+                        cont.dateCreated = Convert.ToDateTime(dt.Rows[i]["dateCreated"]);
+                        cont.dateModified = Convert.ToDateTime(dt.Rows[i]["dateModified"]);
+                    }
+                }
+                return cont;
             }
             catch (Exception ex)
             {
@@ -217,7 +219,7 @@ namespace Quiz_App.Areas.Main.Models
                 }
                 ex.Message.ToString();
             }
-            return ds;
+            return cont;
 
             //try
             //{
@@ -252,9 +254,9 @@ namespace Quiz_App.Areas.Main.Models
             //}
         }
 
-        public string saveContributor(contributor cont,String createdBy)
+        public string saveContributor(contributor cont, String createdBy)
         {
-            String msg = string.Empty;           
+            String msg = string.Empty;
             try
             {
                 SqlCommand cmd = new SqlCommand("sp_saveContributor", con);
@@ -266,7 +268,7 @@ namespace Quiz_App.Areas.Main.Models
                 cmd.Parameters.AddWithValue("@userName", cont.userName);
                 cmd.Parameters.AddWithValue("@password", cont.password);
                 cmd.Parameters.AddWithValue("@contributor_createdBy", createdBy);
-                cmd.Parameters.AddWithValue("@adminLocation",cont.adminLocation);
+                cmd.Parameters.AddWithValue("@adminLocation", cont.adminLocation);
                 cont.dateCreated = DateTime.Now;
                 cmd.Parameters.AddWithValue("@dateCreated", cont.dateCreated);
                 con.Open();
