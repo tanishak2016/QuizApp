@@ -8,7 +8,7 @@ namespace Quiz_App.Models
 {
     public class apiUserRegistrationModel
     {
-        public String id { get; set; }
+        public int? id { get; set; }
         [Required]
         public string userFullName { get; set; }
         [Required]

@@ -77,8 +77,6 @@ namespace Quiz_App.Controllers
             return message;
         }
 
-
-
         [HttpGet]
         public IActionResult DisplayUserRegistration()
         {
@@ -145,7 +143,6 @@ namespace Quiz_App.Controllers
             return Ok(response);
         }
 
-
         // PUT api/<apiUserRegistration>/5
         //[HttpPut("{id}")]
         [HttpPut]
@@ -156,6 +153,14 @@ namespace Quiz_App.Controllers
             String message = string.Empty;
             try
             {
+                if (userregistration.id == null)
+                {
+                    response.IsSuccess = false;
+                    response.Message = "Id not found";
+                    response.StatusCode = 404;
+
+                    return NotFound(response);
+                }
                 if (ModelState.IsValid)
                 {
                     dbobj.updateApiUserRegistration(userregistration);
@@ -169,6 +174,7 @@ namespace Quiz_App.Controllers
                 else
                 {
                     response.IsSuccess = false;
+                    response.Message = "Update Fail";
                     response.StatusCode = 500;
                 }
             }
@@ -179,18 +185,25 @@ namespace Quiz_App.Controllers
                 response.StatusCode = 500;
             }
             return Ok(response);
-
         }
 
         // DELETE api/<apiUserRegistration>/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteUserRegistration(int id)
+        public IActionResult DeleteUserRegistration(int? id)
         {
             ResponseFormat response = new ResponseFormat();
             response.ResponseID = System.Guid.NewGuid().ToString();
             String message = string.Empty;
             try
             {
+                if (id == null)
+                {
+                    response.IsSuccess = false;
+                    response.Message = "Id not found";
+                    response.StatusCode = 404;
+
+                    return NotFound();
+                }
                 if (ModelState.IsValid)
                 {
                     dbobj.deleteApiUserRegistration(id);
@@ -214,9 +227,9 @@ namespace Quiz_App.Controllers
                 response.StatusCode = 500;
             }
             return Ok(response);
-
-
         }
+
+
     }
 }
 

@@ -147,7 +147,7 @@ namespace Quiz_App.Models
             }
         }
 
-        public void deleteApiUserRegistration(int id)
+        public void deleteApiUserRegistration(int? id)
         {
             try
             {
