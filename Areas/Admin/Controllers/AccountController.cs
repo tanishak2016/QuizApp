@@ -143,7 +143,7 @@ namespace Quiz_App.Areas.Controllers
                 var principal = new ClaimsPrincipal(claimsIdentity);
                 var props = new AuthenticationProperties();
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();                
-                return RedirectToAction("NoticeBoardSave", "NoticeBoard", new {area="Main"});
+                return RedirectToAction("welcome", "welcome", new {area="Main"});
                 
             }
             

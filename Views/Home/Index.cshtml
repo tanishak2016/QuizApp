@@ -28,7 +28,7 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
 
-                                        <a class="btn btn-primary btn-user btn-block" href="@Url.Action("SuperAdmin","Account",new {Area="Admin"})"  style="width:61%;margin-left:19%;">Proceed To Super Admin</a>
+                                        <a class="btn btn-primary btn-user btn-block" href="@Url.Action("SuperAdmin","Account",new {Area="Admin"})"  style="width:61%;margin-left:19%;"> Super Admin</a>
 
 
                                         @*<button class="btn btn-primary btn-user btn-block">
@@ -44,7 +44,7 @@
                                 <form asp-action="Admin/Account/normalAdminLogin" class="user" autocomplete="off">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
-                   <a class="btn btn-primary btn-user btn-block" href="@Url.Action("normalAdminLogin","Account",new {Area="Admin"})"  style="width:61%;margin-left:19%;">Proceed To Normal Admin</a>
+                   <a class="btn btn-primary btn-user btn-block" href="@Url.Action("normalAdminLogin","Account",new {Area="Admin"})"  style="width:61%;margin-left:19%;"> Normal Admin</a>
 
                                         @*<button class="btn btn-primary btn-user btn-block" formaction="Admin/Account/normalAdminLogin">
             <span class="icon text-white-50">

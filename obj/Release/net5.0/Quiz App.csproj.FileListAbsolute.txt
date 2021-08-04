@@ -436,3 +436,6 @@ G:\Quiz App\Quiz App\obj\Release\net5.0\Razor\Areas\Main\Views\NoticeBoard\Notic
 G:\Quiz App\Quiz App\obj\Release\net5.0\Razor\Areas\Main\Views\Shared\_Layout.cshtml.g.cs
 G:\Quiz App\Quiz App\obj\Release\net5.0\Razor\Areas\Main\Views\_ViewImports.cshtml.g.cs
 G:\Quiz App\Quiz App\obj\Release\net5.0\Razor\Areas\Main\Views\_ViewStart.cshtml.g.cs
+G:\Quiz App\Quiz App\bin\Release\net5.0\FreeGeoIPCore.dll
+G:\Quiz App\Quiz App\bin\Release\net5.0\MetOfficeDataPoint.dll
+G:\Quiz App\Quiz App\obj\Release\net5.0\Razor\Areas\Main\Views\welcome\welcome.cshtml.g.cs

@@ -1,0 +1,73 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="card" style="width: 15rem;height:12rem;">
+                @*<div class="card-header">Create Notice</div>*@
+                <div class="view overlay">
+                    <img src="~/assets/images/file-icons/64/files-save2.jpg" class="card-img-top" alt="Create Notice" style="height:8rem;">
+                    <a href="#">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    @*<p class="card-text">Click To Create Notice</p>*@
+                    <a class="btn btn-primary btn-user btn-block" href="@Url.Action("NoticeBoardSave","NoticeBoard",new {Area="Main"})" >Create Notice</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-sm">
+            <div class="card" style="width: 15rem;height:12rem;">
+                @*<div class="card-header">Create Notice</div>*@
+                <div class="view overlay">
+                    <img src="~/assets/images/file-icons/64/files-display2.jpg" class="card-img-top" alt="Display Notice" style="height:8rem;">
+                    <a href="#">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    @*<p class="card-text">Click To Create Notice</p>*@
+                    <a  class="btn btn-primary btn-user btn-block"  href="@Url.Action("NoticeBoardDisplay","NoticeBoard",new { Area="Main"})">Display Notice</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-sm">
+            <div class="card" style="width: 15rem;height:12rem;">
+                @*<div class="card-header">Create Notice</div>*@
+                <div class="view overlay">
+                    <img src="~/assets/images/file-icons/64/files-save2.jpg" class="card-img-top" alt="Create Contributor" style="height:8rem;">
+                    <a href="#">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    @*<p class="card-text">Click To Create Notice</p>*@
+                    <a  class="btn btn-primary" href="@Url.Action("saveContributor","Contributor",new { Area="Main"})">Create Contributor</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm">
+            <div class="card" style="width: 15rem;height:12rem;">
+                @*<div class="card-header">Create Notice</div>*@
+                <div class="view overlay">
+                    <img src="~/assets/images/file-icons/64/files-display2.jpg" class="card-img-top" alt="Display Contributor" style="height:8rem;">
+                    <a href="#">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    @*<p class="card-text">Click To Create Notice</p>*@
+                    <a class="btn btn-primary" href="@Url.Action("getContributor","Contributor",new { Area="Main"})">Display Contributor</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -10,6 +10,7 @@ using Quiz_App.Models;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Quiz_App.Controllers
@@ -76,17 +77,7 @@ namespace Quiz_App.Controllers
             return message;
         }
 
-        // PUT api/<apiUserRegistration>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
-        // DELETE api/<apiUserRegistration>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
 
         [HttpGet]
         public IActionResult DisplayUserRegistration()
@@ -120,7 +111,6 @@ namespace Quiz_App.Controllers
 
             ResponseFormat response = new ResponseFormat();
             response.ResponseID = System.Guid.NewGuid().ToString();
-
             string message = string.Empty;
             try
             {
@@ -155,5 +145,79 @@ namespace Quiz_App.Controllers
         }
 
 
+        // PUT api/<apiUserRegistration>/5
+        //[HttpPut("{id}")]
+        [HttpPut]
+        public IActionResult UpdateUserRegistration(apiUserRegistrationModel userregistration)
+        {
+
+            ResponseFormat response = new ResponseFormat();
+            response.ResponseID = System.Guid.NewGuid().ToString();
+            String message = string.Empty;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    dbobj.apiUserRegistrationUpdate(userregistration);
+                    message = "Update Success";
+                    response.IsSuccess = true;
+                    response.Message = message;
+                    ModelState.Clear();
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.ErrorCode = "E500";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                response.ErrorCode = "500";
+            }
+            return Ok(response);
+
+        }
+
+        // DELETE api/<apiUserRegistration>/5
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUserRegistration(int id)
+        {
+
+            ResponseFormat response = new ResponseFormat();
+            response.ResponseID = System.Guid.NewGuid().ToString();
+            String message = string.Empty;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    dbobj.apiUserRegistrationDelete(id);
+                    message = "Delete Success";
+                    response.IsSuccess = true;
+                    response.Message = message;
+                    ModelState.Clear();
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.ErrorCode = "E500";
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                response.ErrorCode = "500";
+            }
+            return Ok(response);
+
+
+        }
     }
-}
+    }
+

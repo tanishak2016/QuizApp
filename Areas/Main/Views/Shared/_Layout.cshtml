@@ -253,7 +253,7 @@
                             </div>
                         </li>
 
-
+                     
 
                         @*<div class="topbar-divider d-none d-sm-block"></div>*@
 
@@ -274,8 +274,10 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    <i class="fas fa-location-arrow fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    @TempData["LocationOfAdmin"]
+                                    @{ TempData.Keep("LocationOfAdmin");}
+                                    @*Profile*@
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -302,9 +304,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Quiz App</h1>
-                        @*<h2>@{TempData.Keep("username");}</h2>*@
-                        @*<h1>@usernamePeek</h1>*@
+                        <p class="h3 mb-0 text-gray-800">Quiz Dashboard</p>                     
 
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                             <i class="fas fa-download fa-sm text-white-50"></i> Generate Report

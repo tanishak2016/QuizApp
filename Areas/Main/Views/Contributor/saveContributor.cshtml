@@ -54,16 +54,17 @@
                     </div>
                     <div class="col-sm-6">
                         <input type="text" placeholder=""
-                               class="form-control form-control-user" readonly="readonly" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
+                        class="form-control form-control-user" asp-for="adminLocation" value="@ViewBag.adminLocation"  readonly="readonly" style="text-align: 
+                       center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300" />
                     </div>
                 </div>
-
+                
 
                 <table class="table-responsive" style="width:100%;margin-left:3%">
                     <tr>
                         <td></td>
                         <td>
-                            <button class="btn btn-primary btn-icon-split" id="save" formaction="saveContributor">
+                            <button class="btn btn-success btn-icon-split" id="save" formaction="saveContributor">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-save"></i>
                                 </span>
@@ -80,6 +81,16 @@
                                 <span class="text">Reset</span>
 
                             </button>
+
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-icon-split" href="@Url.Action("welcome","welcome",new {Area="Main"})">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-fast-backward"></i>
+                                </span>
+                                <span class="text">Go Back</span>
+                            </a>
+
                         </td>
                     </tr>
                 </table>

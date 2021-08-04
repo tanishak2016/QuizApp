@@ -5,21 +5,23 @@
 
 
 <div class="container">
+
+
     <form class="user" asp-action="Main/NoticeBoard/NoticeBoardSave" autocomplete="off">
 
         <div>
 
             <label for="comment">Expiry Date</label><br />
-            @*<input asp-for="NoticeDateExpiry" id="datetimepicker" 
-                   style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px;
- border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px;
- border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; height: 25px; width: 275px; padding-right: 
-     15px; padding-left: 15px;background-color:white" type="text">*@
+            @*<input asp-for="NoticeDateExpiry" id="datetimepicker"
+                                  style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px;
+                border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px;
+                border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; height: 25px; width: 275px; padding-right:
+                    15px; padding-left: 15px;background-color:white" type="text">*@
 
 
 
-            <input type="text" asp-for="NoticeDateExpiry" id="datetimepicker" required class="form-control form-control-user" 
-                   placeholder="Expiry Date"  style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
+            <input type="text" asp-for="NoticeDateExpiry" id="datetimepicker" required class="form-control form-control-user"
+                   placeholder="Expiry Date" style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300">
 
         </div>
 
@@ -31,51 +33,63 @@
             <label for="comment">Notice Title:</label>
             @*<textarea asp-for="NoticeTitle" style=" -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; -moz-border-radius-bottomleft: 30px; -webkit-border-bottom-left-radius: 30px; border-bottom-left-radius: 30px; border: 1px solid #848484; outline: 0; width: 100%; padding-right: 15px; padding-left: 15px;" rows="2" id="title"></textarea>*@
             <textarea asp-for="NoticeTitle" rows="2" id="title" placeholder="Notice Title" required class="form-control form-control-user"
-           style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300"></textarea>
+                      style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300"></textarea>
 
         </div>
 
         <div class="form-group">
             <label for="comment">Notice Description:</label>
-            <textarea asp-for="NoticeDescription" rows="10" id="description"   class="form-control form-control-user"
-            style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300"></textarea>
+            <textarea asp-for="NoticeDescription" rows="10" id="description" class="form-control form-control-user"
+                      style="text-align: center; border-color: aqua; font-family: Arial; font-size: large; font-weight: 300"></textarea>
         </div>
         <div class="form-group">
 
-           
+            <table class="table-responsive" style="width:100%;margin-left:3%">
+                <tr>
+                    <td></td>
+                   
+                    <td>
+                        <button type="submit" class="btn btn-success btn-icon-split" formaction="Main/NoticeBoard/NoticeBoardSave">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-save"></i>
+                            </span>
+                            <span class="text">Save</span>
 
-            <button type="submit" class="btn btn-primary btn-icon-split" formaction="Main/NoticeBoard/NoticeBoardSave">
-                <span class="icon text-white-50">
-                    <i class="fas fa-save"></i>
-                </span>
-                <span class="text">Save</span>
+                        </button>
+                    </td>
+                    <td></td>
+                    <td>
+                        <button type="reset" class="btn btn-danger btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-times"></i>
+                            </span>
+                            <span class="text">Cancel</span>
 
-            </button>
+                        </button>
+                    </td>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-primary btn-icon-split" href="@Url.Action("welcome","welcome",new {Area="Main"})">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-fast-backward"></i>
+                            </span>
+                            <span class="text">Go Back</span>
+                        </a>
+                    </td>
+                </tr>
+                </table>
 
-            <button type="reset" class="btn btn-danger btn-icon-split">
-                <span class="icon text-white-50">
-                    <i class="fas fa-times"></i>
-                </span>
-                <span class="text">Cancel</span>
-
-            </button>
-
-            @*<input type="submit" value="Save" id="submit" formaction="Main/NoticeBoard/NoticeBoardSave" class="btn btn-default" style="background-color:green" />
-
-                <input type="submit" value="Save" id="submit" formaction="Main/NoticeBoard/NoticeBoardSave" class="btn btn-default" style="background-color:green" />*@
 
 
-            @*<a href="#" class="btn btn-danger btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-times"></i>
-                    </span>
-                    <span class="text">Cancel</span>
-                </a>*@
+                
 
 
 
         </div>
     </form>
+  
+
+
 </div>
 
 

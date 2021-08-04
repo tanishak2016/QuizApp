@@ -19,6 +19,10 @@ namespace Quiz_App.Areas.Main.Controllers
         DAL dbobj = new DAL();
         string msg = string.Empty;
 
+        GeoInfoProvider geoInfoProvider = new GeoInfoProvider();
+        GeoInfoViewModel geoInfoModel = new GeoInfoViewModel();
+
+
 
         public IActionResult NoticeBoardData()
         {
@@ -28,8 +32,13 @@ namespace Quiz_App.Areas.Main.Controllers
         }
 
         [HttpGet]
-        public IActionResult NoticeBoardSave()
+        public async Task<IActionResult> NoticeBoardSave()
         {
+
+            geoInfoModel = await geoInfoProvider.GetGeoInfo();
+            contributor cont = new contributor();
+            ViewBag.LocationOfAdmin = geoInfoModel.City + ", " + geoInfoModel.RegionName + ", " + geoInfoModel.CountryName;
+            TempData["LocationOfAdmin"] = ViewBag.LocationOfAdmin;
             return View();
         }
         

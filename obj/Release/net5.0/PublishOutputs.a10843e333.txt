@@ -17,6 +17,10 @@ G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\file-ic
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\file-icons\64\006-record.png
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\file-icons\64\007-folder.png
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\file-icons\64\008-archive.png
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\file-icons\64\files-display2.jpg
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\file-icons\64\files-save.png
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\file-icons\64\files-save2.jpg
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\file-icons\64\save-icon.jpg
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\css\jquery.datetimepicker.css
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\css\noticeBoard.css
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\css\sb-admin-2.css
@@ -32,6 +36,7 @@ G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\datetimepicker\jquery
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\datetimepicker\jquerydatetimepicker.js
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\datetimepicker\package.json
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\img\adminimg.jpg
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\img\location-symbol.png
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\img\quizimg.jpg
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\img\undraw_posting_photo.svg
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\img\undraw_profile.svg
@@ -2177,7 +2182,9 @@ G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.deps.json
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.runtimeconfig.json
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.pdb
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\FreeGeoIPCore.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\MetOfficeDataPoint.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll

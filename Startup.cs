@@ -129,7 +129,7 @@ namespace Quiz_App
                 endpoints.MapAreaControllerRoute(
                   name: "Main",
                   areaName: "Main",
-                 pattern: "Main/{controller=NoticeBoard}/{action=NoticeBoardSave}");
+                 pattern: "Main/{controller=welcome}/{action=welcome}");
                 //pattern: "Main/{controller=Contributor}/{action=saveContributor}");
 
 

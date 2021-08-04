@@ -58,6 +58,7 @@ namespace Quiz_App.Areas.Main.Controllers
             geoInfoModel = await geoInfoProvider.GetGeoInfo();
             contributor cont = new contributor();
             ViewBag.adminLocation = geoInfoModel.City + ", " + geoInfoModel.RegionName + ", " + geoInfoModel.CountryName;
+           // TempData["adminLocation"] = ViewBag.adminLocation;
             return View();
         }
 
@@ -72,7 +73,7 @@ namespace Quiz_App.Areas.Main.Controllers
                 if (ModelState.IsValid)
                 {
 
-                    cont.adminLocation = geoInfoModel.City + ", " + geoInfoModel.RegionName + ", " + geoInfoModel.CountryName;
+                    cont.adminLocation = geoInfoModel.City + ", " + geoInfoModel.RegionName + ", " + geoInfoModel.CountryName+","+geoInfoModel.ZipCode;
                     createdBy = TempData["username"].ToString();
                     string res = dbObj.saveContributor(cont,createdBy);
                     if (res == "Success")
@@ -149,30 +150,7 @@ namespace Quiz_App.Areas.Main.Controllers
             return View(cont);
         }
 
-        //[HttpGet]
-        //public IActionResult deleteContributor(int? id)
-        //{
-        //    //contributor cont = null;
-        //    try
-        //    {
-        //        if (id == null)
-        //        {
-        //            return NotFound();
-        //        }
-        //        if (ModelState.IsValid)
-        //        {
-        //            DataSet ds = new DataSet();
-        //            ds = dbObj.getContributorById(id);
-        //            ViewBag.delContById = ds.Tables[0];
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["msg"] = ex.Message;
-        //    }
-        //    return View();
-        //}
-
+       
 
 
         public IActionResult deleteContributor(int id)
