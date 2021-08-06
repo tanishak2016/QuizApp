@@ -188,7 +188,8 @@ namespace Quiz_App.Controllers
         }
 
         // DELETE api/<apiUserRegistration>/5
-        [HttpDelete("{id}")]
+        //[HttpDelete("{id}")]
+        [HttpDelete]
         public IActionResult DeleteUserRegistration(int? id)
         {
             ResponseFormat response = new ResponseFormat();
@@ -196,13 +197,13 @@ namespace Quiz_App.Controllers
             String message = string.Empty;
             try
             {
-                if (id == null)
+                if (id == null || id == 0)
                 {
                     response.IsSuccess = false;
                     response.Message = "Id not found";
                     response.StatusCode = 404;
 
-                    return NotFound();
+                    return NotFound(response);
                 }
                 if (ModelState.IsValid)
                 {

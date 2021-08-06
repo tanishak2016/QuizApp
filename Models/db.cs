@@ -67,6 +67,7 @@ namespace Quiz_App.Models
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     apiUserRegistrationModel obj = new apiUserRegistrationModel();
+                    obj.id = Convert.ToInt32(dt.Rows[i]["userID"]);
                     obj.userFullName = dt.Rows[i]["userFullName"].ToString();
                     obj.userMobile = dt.Rows[i]["userMobile"].ToString();
                     obj.userEmailID = dt.Rows[i]["userEmailID"].ToString();
