@@ -10,7 +10,7 @@ namespace Quiz_App.Models
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
         public dynamic Data { get; set; }
-        public string ResponseID { get; set; }
+        //public string ResponseID { get; set; }
         public int StatusCode { get; set; }
 
     }

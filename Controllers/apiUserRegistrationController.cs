@@ -108,7 +108,7 @@ namespace Quiz_App.Controllers
         public IActionResult SaveUserRegistration(apiUserRegistrationModel userregistration)
         {
             ResponseFormat response = new ResponseFormat();
-            response.ResponseID = System.Guid.NewGuid().ToString();
+            //response.ResponseID = System.Guid.NewGuid().ToString();
             string message = string.Empty;
             try
             {
@@ -120,6 +120,7 @@ namespace Quiz_App.Controllers
                         message = "insert success";
                         response.IsSuccess = true;
                         response.Message = message;
+                        response.Data = userregistration;
                         response.StatusCode = 200;
 
                         ModelState.Clear();
@@ -149,7 +150,7 @@ namespace Quiz_App.Controllers
         public IActionResult UpdateUserRegistration(apiUserRegistrationModel userregistration)
         {
             ResponseFormat response = new ResponseFormat();
-            response.ResponseID = System.Guid.NewGuid().ToString();
+            //response.ResponseID = System.Guid.NewGuid().ToString();
             String message = string.Empty;
             try
             {
@@ -167,6 +168,7 @@ namespace Quiz_App.Controllers
                     message = "Update Success";
                     response.IsSuccess = true;
                     response.Message = message;
+                    response.Data = userregistration;
                     response.StatusCode = 200;
 
                     ModelState.Clear();
@@ -193,7 +195,7 @@ namespace Quiz_App.Controllers
         public IActionResult DeleteUserRegistration(int? id)
         {
             ResponseFormat response = new ResponseFormat();
-            response.ResponseID = System.Guid.NewGuid().ToString();
+            //response.ResponseID = System.Guid.NewGuid().ToString();
             String message = string.Empty;
             try
             {
