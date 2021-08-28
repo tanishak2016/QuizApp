@@ -23,24 +23,7 @@ namespace Quiz_App.Controllers
         db dbobj = new db();
         // GET: api/<apiUserRegistration>
 
-        [HttpGet]
-        public List<apiUserRegistrationModel> DisplayUserRegistrationOld()
-        {
-            List<apiUserRegistrationModel> apiuserregist = new List<apiUserRegistrationModel>();
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    apiuserregist = dbobj.getApiUserRegistration();//.ToString();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.Message.ToString();
-            }
-            return apiuserregist;
-        }
+        
 
         // GET api/<apiUserRegistration>/5
         [HttpGet("{id}")]
@@ -50,32 +33,8 @@ namespace Quiz_App.Controllers
         }
 
         // POST api/<apiUserRegistration>
-        [HttpPost]
-        public string SaveUserRegistrationOld(apiUserRegistrationModel userregistration)
-        {
-            string message = string.Empty;
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    String result = dbobj.saveApiUserRegistration(userregistration);
-                    if (result == "Success")
-                    {
-                        message = "insert success";
-                        ModelState.Clear();
-                    }
-                    else
-                    {
-                        message = "id already taken";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.Message.ToString();
-            }
-            return message;
-        }
+       
+       
 
         [HttpGet]
         public IActionResult DisplayUserRegistration()

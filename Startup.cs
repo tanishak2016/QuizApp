@@ -32,15 +32,7 @@ namespace Quiz_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
-
-            //services.AddMvcCore(option =>
-            //{
-            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-            //    option.Filters.Add(new AuthorizeFilter(policy));
-            //}).AddXmlSerializerFormatters();
-
+           
             services.AddHttpContextAccessor();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -64,44 +56,24 @@ namespace Quiz_App
             services.AddControllersWithViews().AddNewtonsoftJson();
            // services.AddRazorPages();
 
-
-
-
-
             services.AddControllers()
             .AddJsonOptions(options =>
                options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
+            services.AddControllers().AddNewtonsoftJson();
 
-
-
-
-
-            //services.AddControllers(options =>
-            //{
-            //    var jsonInputFormatter = options.InputFormatters
-            //        .OfType<Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter>()
-            //        .SingleOrDefault();
-            //    jsonInputFormatter.SupportedMediaTypes.Add("application/json");
-            //}
-
-            //);
-
-
-
-
-
-
-
+            services.AddSwaggerGen();
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title="Quiz_App",Version="v1"});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-           // app.UseAuthentication();
-            
-            
+            // app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -119,9 +91,17 @@ namespace Quiz_App
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy();
-            
-            
-           
+
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {

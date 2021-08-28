@@ -48,6 +48,9 @@
     <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="4.2.0" />
     <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.5" />
     <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="19.2.0.47" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>

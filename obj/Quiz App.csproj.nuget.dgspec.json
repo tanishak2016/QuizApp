@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Shagufta Documents\\Freelance work\\QuizApp\\Quiz App.csproj": {}
+    "G:\\Quiz App\\Quiz App\\Quiz App.csproj": {}
   },
   "projects": {
-    "C:\\Shagufta Documents\\Freelance work\\QuizApp\\Quiz App.csproj": {
+    "G:\\Quiz App\\Quiz App\\Quiz App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Shagufta Documents\\Freelance work\\QuizApp\\Quiz App.csproj",
+        "projectUniqueName": "G:\\Quiz App\\Quiz App\\Quiz App.csproj",
         "projectName": "Quiz App",
-        "projectPath": "C:\\Shagufta Documents\\Freelance work\\QuizApp\\Quiz App.csproj",
-        "packagesPath": "C:\\Users\\HP PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Shagufta Documents\\Freelance work\\QuizApp\\obj\\",
+        "projectPath": "G:\\Quiz App\\Quiz App\\Quiz App.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "G:\\Quiz App\\Quiz App\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\HP PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -79,6 +80,18 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.5, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.1.5, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.1.5, )"
+            },
             "Syncfusion.EJ2.AspNet.Core": {
               "target": "Package",
               "version": "[19.2.0.47, )"
@@ -110,7 +123,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

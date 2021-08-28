@@ -1,4 +1,5 @@
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\Quiz App.exe
+G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\css\createNormalAdmin.css
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\css\superAdmin.css
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\carousel\banner_7.jpg
 G:\Quiz App\Quiz App\obj\Release\net5.0\PubTmp\Out\wwwroot\assets\images\carousel\banner_8.jpg
